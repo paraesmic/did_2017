@@ -12,7 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-
+        
         android:layout_weight="0.5"
         android:orientation="horizontal"
         android:layout_margin="8dp"
@@ -47,22 +47,18 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.75"
+        android:layout_weight="1"
         android:paddingTop="8dp"
         android:paddingLeft="8dp"
-        android:paddingRight="8dp">
+        android:paddingRight="8dp"
+        android:gravity="center_vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Luminosita"
-            android:layout_gravity="center"/>
         <SeekBar
             android:id="@+id/barra_intensita"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="9"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="left"
             />
 
         <ImageView
@@ -70,7 +66,7 @@
             android:layout_weight="2"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="right"
             app:srcCompat="@mipmap/ic_launcher" />
     </LinearLayout>
 
@@ -78,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:gravity="center_horizontal"
         android:padding="8dp"
         >
@@ -89,7 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:paddingBottom="8dp"
+            android:paddingRight="8dp"
             android:scaleX="1.5"
             android:scaleY="1.5"
             />
@@ -99,10 +95,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button1"
-            android:paddingBottom="8dp"
+            android:paddingRight="8dp"
             tools:layout_editor_absoluteX="221dp"
             tools:layout_editor_absoluteY="61dp"
-
+            
             />
 
         <Button

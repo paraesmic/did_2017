@@ -13,8 +13,8 @@ public class SecondaryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_secondary);
         Intent intent = getIntent();
-
-    Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-    setSupportActionBar(myToolbar);
+        //// LampManager manager= LampManager.getInstance(); //di nuovo?
+//    Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+//    setSupportActionBar(myToolbar);
     }
 }
