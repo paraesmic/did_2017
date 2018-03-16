@@ -91,7 +91,7 @@
             />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/bottone_luce"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button1"
@@ -102,7 +102,7 @@
             />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/bottone_movimento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button"
