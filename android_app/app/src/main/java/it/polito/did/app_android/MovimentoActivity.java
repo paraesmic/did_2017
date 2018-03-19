@@ -18,15 +18,15 @@ public class MovimentoActivity extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        myToolbar.setNavigationIcon(R.drawable.backarrow);
-        myToolbar.setNavigationOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startActivity(new Intent(MovimentoActivity.this, SecondaryActivity.class));
-                    }
-                }
-
-        );
+//        myToolbar.setNavigationIcon(R.drawable.backarrow);
+//        myToolbar.setNavigationOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        startActivity(new Intent(MovimentoActivity.this, SecondaryActivity.class));
+//                    }
+//                }
+//
+//        );
     }
 }

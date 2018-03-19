@@ -29,7 +29,8 @@
         </activity>
         <activity android:name=".LuceActivity"
             android:parentActivityName=".SecondaryActivity"
-            android:label="@string/luceActivity_name">
+            android:label="@string/luceActivity_name"
+            >
 
         <!-- The meta-data tag is required if you support API level 15 and lower -->
         <meta-data
@@ -37,11 +38,12 @@
             android:value="it.polito.did.app_android.SecondaryActivity" />
         </activity>
         <activity android:name=".MovimentoActivity"
-            android:parentActivityName=".SecondaryActivity">
+            android:parentActivityName=".SecondaryActivity"
+            android:label="@string/movimentoActivity_name">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="it.polito.did.app_android.SecondaryActivity"
-                android:label="@string/movimentoActivity_name"/>
+               />
         </activity>
     </application>
 

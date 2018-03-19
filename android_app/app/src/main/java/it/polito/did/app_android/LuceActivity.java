@@ -1,5 +1,6 @@
 package it.polito.did.app_android;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,18 +16,21 @@ public class LuceActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        Toolbar myToolbar = findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
+//        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+//        setSupportActionBar(myToolbar);
+//        ActionBar bar = getActionBar();
+//        bar.setDisplayShowHomeEnabled(true);
 
-        myToolbar.setNavigationIcon(R.drawable.backarrow);
-        myToolbar.setNavigationOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startActivity(new Intent(LuceActivity.this, SecondaryActivity.class));
-                    }
-                }
-
-        );
+//        myToolbar.setNavigationIcon(R.drawable.backarrow);
+//
+//        myToolbar.setNavigationOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        startActivity(new Intent(LuceActivity.this, SecondaryActivity.class));
+//                    }
+//                }
+//
+//        );
     }
 }
