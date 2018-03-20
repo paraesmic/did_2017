@@ -6,6 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.NumberPicker;
+
+import com.larswerkman.holocolorpicker.ColorPicker;
+import com.larswerkman.holocolorpicker.OpacityBar;
+import com.larswerkman.holocolorpicker.SVBar;
+import com.larswerkman.holocolorpicker.SaturationBar;
+import com.larswerkman.holocolorpicker.ValueBar;
 
 public class LuceActivity extends AppCompatActivity {
 
@@ -15,7 +22,34 @@ public class LuceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_luce);
 
         Intent intent = getIntent();
+        ColorPicker picker = (ColorPicker) findViewById(R.id.colorPicker);
+        SVBar svBar = (SVBar) findViewById(R.id.svbar);
+        SaturationBar saturationBar = (SaturationBar) findViewById(R.id.saturationbar);
 
+        picker.addSVBar(svBar);
+
+        picker.addSaturationBar(saturationBar);
+
+
+//To get the color
+        picker.getColor();
+
+//To set the old selected color u can do it like this
+        picker.setOldCenterColor(picker.getColor());
+// adds listener to the colorpicker which is implemented
+//in the activity
+        picker.setOnColorChangedListener((ColorPicker.OnColorChangedListener) this);
+
+//to turn of showing the old color
+        picker.setShowOldCenterColor(false);
+
+//adding onChangeListeners to bars
+        saturationBar.setOnSaturationChangedListener(new SaturationBar.OnSaturationChangedListener() {
+            @Override
+            public void onSaturationChanged(int saturation) {
+                
+            }
+        });
 
 
 //        Toolbar myToolbar = findViewById(R.id.my_toolbar);
