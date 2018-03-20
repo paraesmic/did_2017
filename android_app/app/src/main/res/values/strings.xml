@@ -5,4 +5,5 @@
     <string name="testButton2">Luce e Colore</string>
     <string name="luceActivity_name">Luce e Colore</string>
     <string name="movimentoActivity_name">Movimento</string>
+    <string name="confermaButton">Conferma</string>
 </resources>
