@@ -16,6 +16,8 @@ public class LuceActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
+
+
 //        Toolbar myToolbar = findViewById(R.id.my_toolbar);
 //        setSupportActionBar(myToolbar);
 //        ActionBar bar = getActionBar();
