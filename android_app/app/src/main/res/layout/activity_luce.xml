@@ -30,7 +30,8 @@
         android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:srcCompat="@mipmap/ic_launcher"
+        android:layout_marginLeft="32dp" />
 
     <TextView
         android:id="@+id/textView"
@@ -99,7 +100,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="null"
+        android:background="#00FFFFFF"
         android:text="@string/confermaButton"
         android:textColor="@color/bianco"
         android:textSize="15dp"
