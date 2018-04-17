@@ -42,11 +42,20 @@ public class LampView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        paint1.setColor(0xffff0000);
+        paint1.setStrokeWidth(3.0f);
+        paint1.setStyle(Paint.Style.STROKE);
+        path1 = new Path();
         float w = canvas.getWidth();
         float h = canvas.getHeight();
         float l = Math.min(w,h)*0.8f;
         double rad = Math.toRadians(angle);
         path1.rewind();
         path1.moveTo((float) (w/2-l/3+l/4*Math.cos(Math.PI-rad)), (float) (h/2+l/4*Math.sin(Math.PI-rad)));
+        path1.lineTo(w/2-l/3,h/2);
+        path1.lineTo(w/2-l/3,h/2-l/4);
+        path1.lineTo(w/2+l/3,h/2-l/4);
+        path1.lineTo(w/2+l/3,h/2);
+        canvas.drawPath(path1,paint1);
     }
 }
