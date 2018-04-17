@@ -6,4 +6,8 @@
     <string name="luceActivity_name">Luce e Colore</string>
     <string name="movimentoActivity_name">Movimento</string>
     <string name="confermaButton">Conferma</string>
+    <string name="action_update">Update</string>
+    <string name="action_search">Search</string>
+    <string name="action_settings">Settings</string>
+
 </resources>
