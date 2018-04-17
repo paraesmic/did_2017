@@ -8,7 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-
     <declare-styleable name="ColorPicker">
         <attr name="color_wheel_radius" format="dimension" />
         <attr name="color_wheel_thickness" format="dimension" />
