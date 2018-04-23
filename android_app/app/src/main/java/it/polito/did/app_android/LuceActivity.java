@@ -44,22 +44,6 @@ public class LuceActivity extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
          ab.setDisplayHomeAsUpEnabled(true);
 
-
-
-//        ActionBar bar = getActionBar();
-//        bar.setDisplayShowHomeEnabled(true);
-
-//        myToolbar.setNavigationIcon(R.drawable.backarrow);
-//
-//        myToolbar.setNavigationOnClickListener(
-//                new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        startActivity(new Intent(LuceActivity.this, SecondaryActivity.class));
-//                    }
-//                }
-//
-//        );
     }
 
     @Override
@@ -75,6 +59,7 @@ public class LuceActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_settings:
                 // User chose the "Settings" item, show the app settings UI...
+
                 return true;
 
             case R.id.action_update:
