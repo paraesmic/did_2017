@@ -44,6 +44,15 @@
                 android:value="it.polito.did.app_android.SecondaryActivity" />
         </activity>
         <activity android:name=".SettingsActivity"></activity>
+        <activity
+            android:name=".Main2Activity"
+            android:label="@string/Main2Activity_name"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="it.polito.did.app_android.Main2Activity" />
+        </activity>
+
     </application>
 
 </manifest>

@@ -1,10 +1,13 @@
 package it.polito.did.app_android;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.GridLayout;
-import android.widget.ListView;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.GridView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,21 +19,63 @@ public class Main2Activity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
         List<Lampada> lista_lampade = new ArrayList<>();
-        GridLayout lay = findViewById(R.id.grid_layout);
+        GridView lay = findViewById(R.id.grid_layout);
         //
         // LampManager manager= LampManager.getInstance();
         // manager.discover();  // da usare una volta imparato ad usare il manager!
         int nLampade = 6; //dato che non prendiamo le lampade da nessuna parte facciamo che siano 6
-        ListView root = null;
-        for (int i = 0; i < nLampade; i++) {
+         for (int i = 0; i < nLampade; i++) {
             Lampada lamp = new Lampada("urltemp");
             lista_lampade.add(lamp);
-            View v = new View(R.id.grid_item);
-            lay.addView( );
+            CustomGridAdapter adapter = new CustomGridAdapter(this, (ArrayList<Lampada>) lista_lampade);
+
+
+//            lay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//                @Override
+//                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                    startActivity(new Intent(Main2Activity.this, SecondaryActivity.class));
+//
+//                }
+//            });
+           lay.setAdapter(adapter);
+
+
         }
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.mainmenu, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                startActivity(new Intent(Main2Activity.this, SettingsActivity.class));
+                Log.i("Hello", "Hello");
+                return true;
+
+            case R.id.action_update:
+                // User chose the "Favorite" action, mark the current item
+                // as a favorite...
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 }

@@ -49,7 +49,7 @@ public class LuceActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.mainmenu, menu);
+        getMenuInflater().inflate(R.menu.secondarymenu, menu);
         return true;
     }
 
@@ -58,7 +58,7 @@ public class LuceActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                // User chose the "Settings" item, show the app settings UI...
+                startActivity(new Intent(LuceActivity.this, SettingsActivity.class));
 
                 return true;
 

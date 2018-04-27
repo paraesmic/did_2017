@@ -55,31 +55,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.mainmenu, menu);
-        return true;
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
-                Log.i("Hello", "Hello");
-                return true;
-
-            case R.id.action_update:
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
-                return true;
-
-            default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
-                return super.onOptionsItemSelected(item);
+        public boolean onCreateOptionsMenu(Menu menu) {
+            // Inflate the menu; this adds items to the action bar if it is present.
+            getMenuInflater().inflate(R.menu.mainmenu, menu);
+            return true;
         }
+
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.action_settings:
+                    startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                    Log.i("Hello", "Hello");
+                    return true;
+
+                case R.id.action_update:
+                    startActivity(new Intent(MainActivity.this, Main2Activity.class));
+                    return true;
+
+                default:
+                    // If we got here, the user's action was not recognized.
+                    // Invoke the superclass to handle it.
+                    return super.onOptionsItemSelected(item);
+            }
 
 
     }

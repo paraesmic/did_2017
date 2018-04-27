@@ -79,7 +79,7 @@ public class Lampada {
     }
 
     public String toString(){
-        return "Lampada: " + nome + "Indirizzo IP:" + ipAddress;
+        return "Lampada: " + nome +" " + "Indirizzo IP:" + ipAddress;
     }
 
 }
