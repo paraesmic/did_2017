@@ -17,6 +17,7 @@ public class Lampada {
 
     public Lampada(String URL) {
         this.url = URL;
+                isOn= false;
     }
 
     public String getNome() {

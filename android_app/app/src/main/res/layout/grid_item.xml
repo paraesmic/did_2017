@@ -5,6 +5,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="8dp"
     android:id="@+id/grid_item"
+    android:minHeight="90dp"
+    android:minWidth="90dp"
+    android:background="@color/bianco"
+    android:descendantFocusability="blocksDescendants"
     >
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,6 +17,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
+
     >
 
     <ImageButton

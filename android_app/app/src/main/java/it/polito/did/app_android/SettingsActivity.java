@@ -23,8 +23,8 @@ public class SettingsActivity extends AppCompatActivity {
             setSupportActionBar(myToolbar);
             ActionBar actionBar = getActionBar();
 
-            android.support.v7.app.ActionBar ab = getSupportActionBar();
-            actionBar.setDisplayHomeAsUpEnabled(true);
+//            android.support.v7.app.ActionBar ab = getSupportActionBar();
+//            actionBar.setDisplayHomeAsUpEnabled(true);
 
 
         }
