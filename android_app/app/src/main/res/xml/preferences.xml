@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="Settings">
+    <PreferenceCategory
+        android:title="@string/pref_wifi_category"
+        android:key="pref_key_wifi_settings">
+        <CheckBoxPreference
+            android:key="pref_key_wifi_enabled"
+            android:summary="@string/pref_summary_wifi_enabled"
+            android:title="@string/pref_title_wifi_enabled"
+            android:defaultValue="true"/>
+        <EditTextPreference
+            android:key="pref_key_wifi_name"
+            android:title="Network Info"
+            android:summary="Information about current WiFi connection"
+    />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/pref_title_language_settings"
+        android:key="pref_key_language_settings">
+    <ListPreference
+
+        android:entries="@array/lang_array_entries"
+        android:entryValues="@array/lang_array_values"
+        android:summary="Change the language used by the application"
+        android:title="Choose language"
+        android:defaultValue="0"
+        />
+</PreferenceCategory>
+</PreferenceScreen>

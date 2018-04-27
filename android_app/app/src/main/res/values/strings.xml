@@ -9,5 +9,11 @@
     <string name="action_update">Update</string>
     <string name="action_search">Search</string>
     <string name="action_settings">Settings</string>
-    <string name="menu_logout_label">logout_label</string>
+    <string name="pref_wifi_category">WiFi Connection</string>
+    <string name="pref_title_wifi_enabled">Enable</string>
+    <string name="pref_summary_wifi_enabled">Turn on/off WiFi connection</string>
+    <string name="pref_title_language_settings">Language</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
