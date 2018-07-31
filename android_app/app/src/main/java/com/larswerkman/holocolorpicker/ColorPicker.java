@@ -374,7 +374,7 @@ public class ColorPicker extends View {
 
         mCenterHaloPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mCenterHaloPaint.setColor(Color.BLACK);
-        mCenterHaloPaint.setAlpha(0x00);
+        mCenterHaloPaint.setAlpha(0x90);
 
         mCenterNewColor = calculateColor(mAngle);
         mCenterOldColor = calculateColor(mAngle);
@@ -415,6 +415,7 @@ public class ColorPicker extends View {
         else {
             // Draw the new selected color in the center.
             canvas.drawArc(mCenterRectangle, 0, 360, true, mCenterNewPaint);
+
         }
     }
 
@@ -607,7 +608,7 @@ public class ColorPicker extends View {
                 else if (x >= -mColorCenterRadius && x <= mColorCenterRadius
                         && y >= -mColorCenterRadius && y <= mColorCenterRadius
                         && mShowCenterOldColor) {
-                    mCenterHaloPaint.setAlpha(0x50);
+                    mCenterHaloPaint.setAlpha(0x90);
                     setColor(getOldCenterColor());
                     invalidate();
                 }
@@ -657,7 +658,7 @@ public class ColorPicker extends View {
                 break;
             case MotionEvent.ACTION_UP:
                 mUserIsMovingPointer = false;
-                mCenterHaloPaint.setAlpha(0x00);
+                mCenterHaloPaint.setAlpha(0x90);
 
                 if (onColorSelectedListener != null && mCenterNewColor != oldSelectedListenerColor) {
                     onColorSelectedListener.onColorSelected(mCenterNewColor);

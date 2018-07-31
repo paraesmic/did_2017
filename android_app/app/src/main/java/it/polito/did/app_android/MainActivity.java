@@ -76,12 +76,12 @@ public class MainActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.action_update:
-//                    startActivity(new Intent(MainActivity.this, Main2Activity.class));
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    gridHomepageFragment f = new gridHomepageFragment();
-                    fragmentTransaction.replace(R.id.main_replace, f);
-                    fragmentTransaction.commit();
+                    startActivity(new Intent(MainActivity.this, Main2Activity.class));
+                   // FragmentManager fragmentManager = getSupportFragmentManager();
+                    //FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    //gridHomepageFragment f = new gridHomepageFragment();
+                    //fragmentTransaction.replace(R.id.main_replace, f);
+                    //fragmentTransaction.commit();
                     List<Lampada> lista_lampade = new ArrayList<>();
                     GridView lay = findViewById(R.id.grid_layout);
                     //
