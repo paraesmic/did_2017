@@ -41,9 +41,14 @@ public class CustomGridAdapter extends BaseAdapter {
             LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v=li.inflate(R.layout.grid_item,p, false);
         }
-        TextView tv = (TextView) v.findViewById(R.id.grid_item_name);
+        TextView name = (TextView) v.findViewById(R.id.grid_item_name);
         ImageButton b = (ImageButton) v.findViewById(R.id.grid_item_button);
-        tv.setText(lista_lampade.get(i).toString());
+        TextView isOn = (TextView) v.findViewById(R.id.grid_item_isOn_text);
+        name.setText(lista_lampade.get(i).toString() + "\n" + "Indirizzo IP: " + lista_lampade.get(i).getIpAddress());
+        if(lista_lampade.get(i).isOn)
+        isOn.setText("ACCESA");
+        else
+            isOn.setText("SPENTA");
 
 
         return v;

@@ -3,6 +3,8 @@ package it.polito.did.app_android;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -10,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -31,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         // LampManager manager= LampManager.getInstance();
         // manager.discover();  // da usare una volta imparato ad usare il manager!
-        int nLampade = 6; //dato che non prendiamo le lampade da nessuna parte facciamo che siano 6
+        int nLampade = 12; //dato che non prendiamo le lampade da nessuna parte facciamo che siano 6
         ListView root = null;
         for (int i = 0; i < nLampade; i++) {
             Lampada lamp = new Lampada("urltemp");
@@ -51,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         });
         root.setAdapter(adapter);
 
-
     }
 
     @Override
@@ -66,12 +68,34 @@ public class MainActivity extends AppCompatActivity {
         public boolean onOptionsItemSelected(MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.action_settings:
-                    startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+//                    getFragmentManager().beginTransaction()
+//                            .add(R.id.container, new SettingsFragment())
+//                            .commit();
                     Log.i("Hello", "Hello");
                     return true;
 
                 case R.id.action_update:
-                    startActivity(new Intent(MainActivity.this, Main2Activity.class));
+//                    startActivity(new Intent(MainActivity.this, Main2Activity.class));
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    gridHomepageFragment f = new gridHomepageFragment();
+                    fragmentTransaction.replace(R.id.main_replace, f);
+                    fragmentTransaction.commit();
+                    List<Lampada> lista_lampade = new ArrayList<>();
+                    GridView lay = findViewById(R.id.grid_layout);
+                    //
+                    // LampManager manager= LampManager.getInstance();
+                    // manager.discover();  // da usare una volta imparato ad usare il manager!
+                    int nLampade = 12; //dato che non prendiamo le lampade da nessuna parte facciamo che siano 6
+                    for (int i = 0; i < nLampade; i++) {
+                        Lampada lamp = new Lampada("urltemp");
+                        lista_lampade.add(lamp);
+                        CustomGridAdapter adapter2 = new CustomGridAdapter(this, (ArrayList<Lampada>) lista_lampade);
+                        if(lay!=null)
+                        lay.setAdapter(adapter2);
+
+                    }
                     return true;
 
                 default:

@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,7 @@ public class Main2Activity extends AppCompatActivity {
         //
         // LampManager manager= LampManager.getInstance();
         // manager.discover();  // da usare una volta imparato ad usare il manager!
-        int nLampade = 6; //dato che non prendiamo le lampade da nessuna parte facciamo che siano 6
+        int nLampade = 12; //dato che non prendiamo le lampade da nessuna parte facciamo che siano 6
          for (int i = 0; i < nLampade; i++) {
             Lampada lamp = new Lampada("urltemp");
             lista_lampade.add(lamp);
@@ -57,6 +58,8 @@ public class Main2Activity extends AppCompatActivity {
                    Lampada lamp = lista_lampade.get(i);
                    if(!lamp.isOn) {
                        cv.setCardBackgroundColor(Color.YELLOW);
+                       TextView t = (TextView) view.findViewById(R.id.grid_item_isOn_text);
+                       t.setText("ACCESA");
                        lamp.turnOn();
                        Log.i("tag","accendo");
 
@@ -64,11 +67,14 @@ public class Main2Activity extends AppCompatActivity {
                    else if(lamp.isOn){
                        cv.setCardBackgroundColor(Color.WHITE);
                        lamp.turnOff();
+                       TextView t = (TextView) view.findViewById(R.id.grid_item_isOn_text);
+                       t.setText("SPENTA");
                        Log.i("tag","spengo");
+
                    }
                }
            });
-           
+
         }
     }
 
