@@ -17,7 +17,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main2Activity extends AppCompatActivity {
+public class MainGridActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,16 +38,6 @@ public class Main2Activity extends AppCompatActivity {
             Lampada lamp = new Lampada("urltemp");
             lista_lampade.add(lamp);
             CustomGridAdapter adapter = new CustomGridAdapter(this, (ArrayList<Lampada>) lista_lampade);
-
-
-//            lay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//                @Override
-//                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                    startActivity(new Intent(Main2Activity.this, SecondaryActivity.class));
-//
-//                }
-//            });
 
            lay.setAdapter(adapter);
            lay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -89,13 +79,12 @@ public class Main2Activity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                startActivity(new Intent(Main2Activity.this, SettingsActivity.class));
+                startActivity(new Intent(MainGridActivity.this, SettingsActivity.class));
                 Log.i("Hello", "Hello");
                 return true;
 
             case R.id.action_update:
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
+
                 return true;
 
             default:
