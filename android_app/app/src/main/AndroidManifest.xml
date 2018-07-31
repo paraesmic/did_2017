@@ -50,13 +50,13 @@
         <activity android:name=".SettingsActivity"
             android:theme="@style/AppTheme"></activity>
         <activity
-            android:name=".Main2Activity"
+            android:name=".MainGridActivity"
             android:label="@string/Main2Activity_name"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="it.polito.did.app_android.Main2Activity" />
+                android:value="it.polito.did.app_android.MainGridActivity" />
         </activity>
 
     </application>

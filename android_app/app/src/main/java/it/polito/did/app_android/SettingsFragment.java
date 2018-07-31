@@ -13,12 +13,4 @@ public class SettingsFragment extends PreferenceFragment {
         addPreferencesFromResource(R.xml.preferences);
         }
 
-//    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-//        Preference pref = findPreference(key);
-//
-//        if (pref instanceof ListPreference) {  //mostra elemento scelto al posto del summary ad esempio: lingua corrente
-//            ListPreference listPref = (ListPreference) pref;
-//            pref.setSummary(listPref.getEntry());
-//        }
-//    }
 }

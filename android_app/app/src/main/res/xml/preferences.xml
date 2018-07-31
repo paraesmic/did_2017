@@ -2,24 +2,36 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="Settings">
     <PreferenceCategory
-        android:title="@string/pref_wifi_category"
-        android:key="pref_key_wifi_settings">
+        android:key="pref_key_notification_settings"
+        android:title="@string/pref_notifications_category">
+        <RingtonePreference
+            android:ringtoneType="notification"
+            android:showDefault="true"
+            android:showSilent="true"
+            android:summary="@string/pref_summary_notification_sound"
+            android:title="@string/pref_title_notification_sound" />
         <CheckBoxPreference
-            android:key="pref_key_wifi_enabled"
-            android:summary="@string/pref_summary_wifi_enabled"
-            android:title="@string/pref_title_wifi_enabled"
+            android:key="pref_key_new_lamp_notification"
+            android:summary="@string/pref_summary_new_lamp_notification"
+            android:title="@string/pref_title_new_lamp_notification"
+            android:defaultValue="true"
+            />
+        <CheckBoxPreference
+            android:key="pref_key_battery_notification"
+            android:summary="@string/pref_summary_battery_notification"
+            android:title="@string/pref_title_battery_notification"
+            android:defaultValue="true"
+            />
+        <CheckBoxPreference
+            android:key="pref_key_battery_low_notification"
+            android:summary="@string/pref_summary_battery_low_notification"
+            android:title="@string/pref_title_battery_low_notification"
             android:defaultValue="true"/>
-        <EditTextPreference
-            android:key="pref_key_wifi_name"
-            android:title="Network Info"
-            android:summary="Information about current WiFi connection"
-    />
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/pref_title_language_settings"
         android:key="pref_key_language_settings">
     <ListPreference
-
         android:entries="@array/lang_array_entries"
         android:entryValues="@array/lang_array_values"
         android:summary="Change the language used by the application"
@@ -27,4 +39,8 @@
         android:defaultValue="0"
         />
 </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Altro"
+        android:key="pref_key_misc_settings"
+        />
 </PreferenceScreen>

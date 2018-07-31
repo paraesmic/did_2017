@@ -10,11 +10,17 @@
     <string name="action_update">Aggiorna</string>
     <string name="action_search">Cerca</string>
     <string name="action_settings">Impostazioni</string>
-    <string name="pref_wifi_category">Connessione WiFi</string>
-    <string name="pref_title_wifi_enabled">Abilita</string>
-    <string name="pref_summary_wifi_enabled">Accendi/Spegni connessione WiFi</string>
+    <string name="pref_notifications_category">Impostazioni notifiche</string>
+    <string name="pref_title_notification_sound">Modifica tono notifiche</string>
+    <string name="pref_summary_notification_sound">Cambia il suono delle notifiche</string>
     <string name="pref_title_language_settings">Lingua</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pref_summary_new_lamp_notification">Abilita le notifiche quando una lampada si connette alla rete</string>
+    <string name="pref_title_new_lamp_notification">Notifica nuova lampada</string>
+    <string name="pref_summary_battery_notification">Abilita le notifiche quando scolleghi il cavo.</string>
+    <string name="pref_title_battery_notification">Notifica modalità batteria</string>
+    <string name="pref_summary_battery_low_notification">Abilita òle notifiche quando la batteria di una lampada è scarica.</string>
+    <string name="pref_title_battery_low_notification">Notifica batteria scarica</string>
 </resources>

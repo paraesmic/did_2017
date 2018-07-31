@@ -3,8 +3,6 @@ package it.polito.did.app_android;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -76,15 +74,10 @@ public class MainActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.action_update:
-                    startActivity(new Intent(MainActivity.this, Main2Activity.class));
-                   // FragmentManager fragmentManager = getSupportFragmentManager();
-                    //FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    //gridHomepageFragment f = new gridHomepageFragment();
-                    //fragmentTransaction.replace(R.id.main_replace, f);
-                    //fragmentTransaction.commit();
-                    List<Lampada> lista_lampade = new ArrayList<>();
+                    startActivity(new Intent(MainActivity.this, MainGridActivity.class));
+                                   List<Lampada> lista_lampade = new ArrayList<>();
                     GridView lay = findViewById(R.id.grid_layout);
-                    //
+
                     // LampManager manager= LampManager.getInstance();
                     // manager.discover();  // da usare una volta imparato ad usare il manager!
                     int nLampade = 12; //dato che non prendiamo le lampade da nessuna parte facciamo che siano 6
