@@ -24,4 +24,6 @@
     <string name="pref_summary_battery_low_notification">Abilita òle notifiche quando la batteria di una lampada è scarica.</string>
     <string name="pref_title_battery_low_notification">Notifica batteria scarica</string>
     <string name="search_hint">Cerca una lampada...</string>
+    <string name="button_ripristina_testo">Ripristina</string>
+    <string name="button_applica_testo">Applica</string>
 </resources>

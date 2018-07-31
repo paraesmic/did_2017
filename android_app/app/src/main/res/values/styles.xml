@@ -7,7 +7,12 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/giallo</item>
         <item name="android:switchTextAppearance">@color/bianco</item>
+        <item name="homeAsUpIndicator">@drawable/ic_action_arrow</item>
+        <item name="actionOverflowButtonStyle">@style/myOverflow</item>
+    </style>
 
+    <style name="myOverflow" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">#ffffff</item>
     </style>
 
 
