@@ -5,7 +5,10 @@
         android:id="@+id/action_search"
         android:icon="@drawable/ic_action_search"
         android:title="@string/action_search"
-        app:showAsAction="always"/>
+        android:iconTint="@color/bianco"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="collapseActionView|ifRoom"
+        />
 
     <item
         android:id="@+id/action_update"
