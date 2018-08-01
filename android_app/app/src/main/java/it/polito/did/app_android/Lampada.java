@@ -11,8 +11,9 @@ public class Lampada {
     Boolean isOn;
     String ipAddress;
 
-    public Lampada(String URL, Boolean status) {
-        this.url = URL;
+    public Lampada(String nome, String ipAddress, Boolean status) {
+        this.nome = nome;
+        this.ipAddress = ipAddress;
         isOn= status;
     }
 
@@ -22,14 +23,6 @@ public class Lampada {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getURL() {
-        return url;
-    }
-
-    public void setURL(String URL) {
-        this.url = URL;
     }
 
     public int getColor() {
@@ -76,7 +69,7 @@ public class Lampada {
     }
 
     public String toString(){
-        return "Lampada: " + nome;
+        return nome;
     }
 
 }

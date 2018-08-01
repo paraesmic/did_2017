@@ -56,7 +56,7 @@ public class CustomGridAdapter extends BaseAdapter {
             }
         });
         TextView isOn = (TextView) v.findViewById(R.id.grid_item_isOn_text);
-        name.setText(lista_lampade.get(i).toString() + "\n" + "Indirizzo IP: " + lista_lampade.get(i).getIpAddress());
+        name.setText(lista_lampade.get(i).toString() + "\n" + lista_lampade.get(i).getIpAddress());
         if(lista_lampade.get(i).isOn)
         {
             isOn.setText("ACCESA");

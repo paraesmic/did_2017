@@ -2,13 +2,16 @@ package it.polito.did.app_android;
 
 import android.app.ActionBar;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SeekBar;
+import android.widget.Switch;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -24,10 +27,13 @@ public class SecondaryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_secondary);
         Intent intent = getIntent();
-        //// LampManager manager= LampManager.getInstance(); //di nuovo?
-       Toolbar myToolbar = findViewById(R.id.my_toolbar);
-      setSupportActionBar(myToolbar);
-      ActionBar actionBar = getActionBar();
+        Bundle bundle = getIntent().getExtras();
+        int currentLamp_index = bundle.getInt("currentLamp_index");
+        final Lampada current = lista_lampade.get(currentLamp_index);
+
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        ActionBar actionBar = getActionBar();
 
       android.support.v7.app.ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
@@ -47,7 +53,38 @@ public class SecondaryActivity extends AppCompatActivity {
 
         Button bottone_movimento = findViewById(R.id.bottone_movimento);
         Button bottone_luce = findViewById(R.id.bottone_luce);
-        
+
+        //settaggio nome
+        TextView name = findViewById(R.id.nomeLampada_secondary);
+        name.setText(current.getNome());
+
+        //settaggio intensità
+        SeekBar sb = findViewById(R.id.barra_intensita);
+        int current_intensity = current.getIntensity();
+        sb.setProgress(current_intensity);
+        //funzionamento seekbar e salvataggio dati
+        sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                current.setIntensity(i);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        //settaggio On/Off
+        Switch sw = findViewById(R.id.switch_secondary);
+        sw.setChecked(current.isOn);
+
+
 
         bottone_luce.setOnClickListener(new View.OnClickListener() {
                                                  @Override

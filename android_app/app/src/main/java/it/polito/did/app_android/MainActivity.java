@@ -55,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                startActivity(new Intent(MainActivity.this, SecondaryActivity.class));
+                Intent intent = new Intent(MainActivity.this, SecondaryActivity.class);
+                intent.putExtra("currentLamp_index", i);
+                startActivity(intent);
 
             }
         });

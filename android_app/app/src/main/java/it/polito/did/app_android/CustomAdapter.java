@@ -47,7 +47,7 @@ public class CustomAdapter extends BaseAdapter {
         }
         TextView tv = (TextView) v.findViewById(R.id.testo_lampada);
         Switch sw = (Switch) v.findViewById(R.id.switch_isOn);
-       tv.setText(lista_lampade.get(i).toString() + "\n \n" + "Indirizzo IP: " + lista_lampade.get(i).getIpAddress());
+       tv.setText(lista_lampade.get(i).toString() + "\n \n" + lista_lampade.get(i).getIpAddress());
        Log.i("Completata", "View" + i + "nella lista");
 //        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 //            @Override
