@@ -9,16 +9,21 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class CustomGridAdapter extends BaseAdapter {
-    private Context context;
-    private final List<Lampada> lista_lampade;
+import static android.graphics.Color.WHITE;
+import static android.graphics.Color.YELLOW;
 
-    public CustomGridAdapter(Context ctx, ArrayList<Lampada> lampade){
+public class CustomGridAdapter extends BaseAdapter {
+
+    private Context context;
+    LampManager manager = LampManager.getInstance();
+    final List<Lampada> lista_lampade = manager.getLamps();
+
+    public CustomGridAdapter(Context ctx){
         this.context = ctx;
-        this.lista_lampade = lampade;
+        final List<Lampada> lista_lampade = manager.getLamps();
+
     }
 
     @Override
@@ -53,9 +58,14 @@ public class CustomGridAdapter extends BaseAdapter {
         TextView isOn = (TextView) v.findViewById(R.id.grid_item_isOn_text);
         name.setText(lista_lampade.get(i).toString() + "\n" + "Indirizzo IP: " + lista_lampade.get(i).getIpAddress());
         if(lista_lampade.get(i).isOn)
-        isOn.setText("ACCESA");
-        else
+        {
+            isOn.setText("ACCESA");
+            v.setBackgroundColor(YELLOW);
+        }
+        else {
             isOn.setText("SPENTA");
+            v.setBackgroundColor(WHITE);
+        }
         return v;
     }
 }

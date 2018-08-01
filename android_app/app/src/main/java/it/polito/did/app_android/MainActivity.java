@@ -19,13 +19,13 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
@@ -33,20 +33,24 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        final List<Lampada> lista_lampade = new ArrayList<>();
+        Log.i("avvisoMain", "1");
+        LampManager manager= LampManager.getInstance();
+        manager.discover();
+        Log.i("avvisoMain", "2");
+        final List<Lampada> lista_lampade = manager.getLamps();
 
-        // LampManager manager= LampManager.getInstance();
-        // manager.discover();  // da usare una volta imparato ad usare il manager!
-        int nLampade = 12; //dato che non prendiamo le lampade da nessuna parte facciamo che siano 6
-        ListView root = null;
-        for (int i = 0; i < nLampade; i++) {
-            Lampada lamp = new Lampada("urltemp");
-            lista_lampade.add(lamp);
-        }
+        Log.i("avvisoMain", "3");
+      // da usare una volta imparato ad usare il manager!
+        //int nLampade = 12; //dato che non prendiamo le lampade da nessuna parte facciamo che siano 6
 
-        root = findViewById(R.id.list_layout);
-        CustomAdapter adapter = new CustomAdapter(this, (ArrayList<Lampada>) lista_lampade);
+//        for (int i = 0; i < nLampade; i++) {
+//            Lampada lamp = new Lampada("urltemp");
+//            lista_lampade.add(lamp);
+//        }
 
+        ListView root = findViewById(R.id.list_layout);
+        CustomAdapter adapter = new CustomAdapter(this);
+        Log.i("avvisoMain", "4");
         root.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -56,13 +60,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         root.setAdapter(adapter);
-
-        for (int i = 0; i < nLampade; i++) {
+        Log.i("avvisoMain", "5");
+        for (int i = 0; i <lista_lampade.size(); i++) {
             GridView lay = findViewById(R.id.grid_layout);
-            Lampada lamp = new Lampada("urltemp");
-            lista_lampade.add(lamp);
-            CustomGridAdapter g_adapter = new CustomGridAdapter(this, (ArrayList<Lampada>) lista_lampade);
-
+//            Lampada lamp = new Lampada("urltemp");
+//            lista_lampade.add(lamp);
+            final CustomGridAdapter g_adapter = new CustomGridAdapter(this);
+            Log.i("avvisoMain", "6");
             lay.setAdapter(g_adapter);
             lay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -75,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                         t.setText("ACCESA");
                         lamp.turnOn();
                         Log.i("tag","accendo");
+
 
                     }
                     else if(lamp.isOn){

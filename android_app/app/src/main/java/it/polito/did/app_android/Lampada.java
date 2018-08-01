@@ -2,10 +2,6 @@ package it.polito.did.app_android;
 
 import android.graphics.Bitmap;
 
-/**
- * Created by Luca on 28/11/2017.
- */
-
 public class Lampada {
     String nome;
     String url;
@@ -15,9 +11,9 @@ public class Lampada {
     Boolean isOn;
     String ipAddress;
 
-    public Lampada(String URL) {
+    public Lampada(String URL, Boolean status) {
         this.url = URL;
-                isOn= false;
+        isOn= status;
     }
 
     public String getNome() {

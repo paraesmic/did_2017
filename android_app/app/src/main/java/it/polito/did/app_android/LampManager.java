@@ -1,11 +1,9 @@
 package it.polito.did.app_android;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Created by Luca on 30/11/2017.
- */
 
 public class LampManager {
 
@@ -21,11 +19,23 @@ public class LampManager {
         return lista_lampade;
     }
 
-    public void discover(Runnable done){
+    public void discover(/*Runnable done*/){
 
         //inizia una ricerca di lampade
-        Lampada lamp = new Lampada("urltemp");
-        lista_lampade.add(lamp);
-        done.run();
+        Log.i("avvisoManager", "1");
+        int nLampade = 12; //dato che non prendiamo le lampade da nessuna parte facciamo che siano 6
+        for (int i = 0; i < nLampade; i++) {
+            Lampada lamp = new Lampada("urltemp", getRandomBoolean());
+            lista_lampade.add(lamp);
+        }
+        //done.run();
     }
+
+    public static boolean getRandomBoolean() {
+        double b = Math.random();
+        if(b<0.5){
+            return true;
+        } else
+            return false;
+        }
 }

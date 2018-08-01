@@ -11,7 +11,13 @@ import android.view.MenuItem;
 import com.larswerkman.holocolorpicker.ColorPicker;
 import com.larswerkman.holocolorpicker.SaturationBar;
 
+import java.util.List;
+
 public class LuceActivity extends AppCompatActivity {
+
+    LampManager manager = LampManager.getInstance();
+    final List<Lampada> lista_lampade = manager.getLamps();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,7 @@ public class LuceActivity extends AppCompatActivity {
 
         ActionBar ab = getSupportActionBar();
          ab.setDisplayHomeAsUpEnabled(true);
+
 
     }
 

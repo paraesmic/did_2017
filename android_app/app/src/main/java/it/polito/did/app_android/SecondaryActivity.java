@@ -10,8 +10,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.List;
+
 
 public class SecondaryActivity extends AppCompatActivity {
+
+    LampManager manager = LampManager.getInstance();
+    final List<Lampada> lista_lampade = manager.getLamps();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +47,7 @@ public class SecondaryActivity extends AppCompatActivity {
 
         Button bottone_movimento = findViewById(R.id.bottone_movimento);
         Button bottone_luce = findViewById(R.id.bottone_luce);
+        
 
         bottone_luce.setOnClickListener(new View.OnClickListener() {
                                                  @Override

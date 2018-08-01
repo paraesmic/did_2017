@@ -11,22 +11,17 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static android.graphics.Color.YELLOW;
 
-/**
- * Created by Luca on 07/12/2017.
- */
-
 public class CustomAdapter extends BaseAdapter {
     private Context context;
-    private final List<Lampada> lista_lampade;
+    LampManager manager = LampManager.getInstance();
+    final List<Lampada> lista_lampade = manager.getLamps();
 
-    public CustomAdapter(Context ctx, ArrayList<Lampada> lampade){
+    public CustomAdapter(Context ctx){
         this.context = ctx;
-        this.lista_lampade = lampade;
     }
 
     @Override
@@ -53,6 +48,7 @@ public class CustomAdapter extends BaseAdapter {
         TextView tv = (TextView) v.findViewById(R.id.testo_lampada);
         Switch sw = (Switch) v.findViewById(R.id.switch_isOn);
        tv.setText(lista_lampade.get(i).toString() + "\n \n" + "Indirizzo IP: " + lista_lampade.get(i).getIpAddress());
+       Log.i("Completata", "View" + i + "nella lista");
 //        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 //            @Override
 //            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -64,14 +60,11 @@ public class CustomAdapter extends BaseAdapter {
             v.setBackgroundColor(Color.WHITE);
             sw.setChecked(false);
             Log.i("tag","e' spenta");
-
         }
         else if(lamp.isOn){
             v.setBackgroundColor(YELLOW);
-            lamp.turnOff();
             sw.setChecked(true);
             Log.i("tag","e' accesa");
-
         }
 
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -80,17 +73,23 @@ public class CustomAdapter extends BaseAdapter {
                 Lampada lamp = lista_lampade.get(i);
               if(b){
                   lamp.turnOn();
+                  Log.i("switch", "on");
               }
               if(!b){
                   lamp.turnOff();
+                  Log.i("switch", "off");
               }
-
+         //  refreshData(lista_lampade);
             }
         });
-
-
         return v;
 
 
+    }
+
+    public void refreshData(List<Lampada> lista_aggiornata) {
+        this.lista_lampade.clear();
+        this.lista_lampade.addAll(lista_aggiornata);
+        notifyDataSetChanged();
     }
 }
