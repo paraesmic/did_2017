@@ -1,7 +1,6 @@
 package it.polito.did.app_android;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,12 +43,7 @@ public class CustomGridAdapter extends BaseAdapter {
         }
         TextView name = (TextView) v.findViewById(R.id.grid_item_name);
         ImageButton b = (ImageButton) v.findViewById(R.id.grid_item_button);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                view.getContext().startActivity(new Intent(view.getContext(), SecondaryActivity.class));
-            }
-        });
+//        b.setOnClickListener();
         TextView isOn = (TextView) v.findViewById(R.id.grid_item_isOn_text);
         name.setText(lista_lampade.get(i).toString() + "\n" + "Indirizzo IP: " + lista_lampade.get(i).getIpAddress());
         if(lista_lampade.get(i).isOn)
