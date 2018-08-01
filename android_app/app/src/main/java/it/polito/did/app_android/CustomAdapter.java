@@ -48,7 +48,7 @@ public class CustomAdapter extends BaseAdapter {
     public View getView(final int i, View v, ViewGroup p) {
         if(v==null){
             LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v=li.inflate(R.layout.lampada_item_layout, p, false);
+            v=li.inflate(R.layout.lampada_item_layout,p, false);
         }
         TextView tv = (TextView) v.findViewById(R.id.testo_lampada);
         Switch sw = (Switch) v.findViewById(R.id.switch_isOn);

@@ -43,13 +43,14 @@ public class CustomGridAdapter extends BaseAdapter {
         }
         TextView name = (TextView) v.findViewById(R.id.grid_item_name);
         ImageButton b = (ImageButton) v.findViewById(R.id.grid_item_button);
-//        b.setOnClickListener();
         TextView isOn = (TextView) v.findViewById(R.id.grid_item_isOn_text);
         name.setText(lista_lampade.get(i).toString() + "\n" + "Indirizzo IP: " + lista_lampade.get(i).getIpAddress());
         if(lista_lampade.get(i).isOn)
         isOn.setText("ACCESA");
         else
             isOn.setText("SPENTA");
+
+
         return v;
     }
 }
