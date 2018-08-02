@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -19,17 +21,18 @@ import java.util.List;
 public class SecondaryActivity extends AppCompatActivity {
 
     LampManager manager = LampManager.getInstance();
-    final List<Lampada> lista_lampade = manager.getLamps();
-
+    int statoLayoutMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_secondary);
-        Intent intent = getIntent();
+        final List<Lampada> lista_lampade = manager.getLamps();
         Bundle bundle = getIntent().getExtras();
-        int currentLamp_index = bundle.getInt("currentLamp_index");
+        final int currentLamp_index = bundle.getInt("currentLamp_index");
         final Lampada current = lista_lampade.get(currentLamp_index);
+        int statoLayoutMain = bundle.getInt("statoLayoutMain");
+
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -64,6 +67,7 @@ public class SecondaryActivity extends AppCompatActivity {
         sb.setProgress(current_intensity);
         //funzionamento seekbar e salvataggio dati
         sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            Lampada current = lista_lampade.get(currentLamp_index);
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 current.setIntensity(i);
@@ -83,8 +87,24 @@ public class SecondaryActivity extends AppCompatActivity {
         //settaggio On/Off
         Switch sw = findViewById(R.id.switch_secondary);
         sw.setChecked(current.isOn);
+        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
+                    if(b){
+                        current.turnOn();
+                        manager.setLamps(lista_lampade);
+                        Log.i("switchSecondary", "on");
 
+                    }
+                    if(!b){
+                        current.turnOff();
+                        manager.setLamps(lista_lampade);
+                        Log.i("switchSecondary", "off");
+
+                    }
+            }
+        });
 
         bottone_luce.setOnClickListener(new View.OnClickListener() {
                                                  @Override
@@ -92,8 +112,8 @@ public class SecondaryActivity extends AppCompatActivity {
                                                      startActivity(new Intent(SecondaryActivity.this, LuceActivity.class));
                                                  }
                                              }
+                                             );
 
-        );
         bottone_movimento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,7 +138,10 @@ public class SecondaryActivity extends AppCompatActivity {
             case R.id.action_settings:
                 startActivity(new Intent(SecondaryActivity.this, SettingsActivity.class));
                 return true;
-
+            case android.R.id.home:
+                Intent intent = new Intent(SecondaryActivity.this, MainActivity.class);
+                intent.putExtra("statoLayoutMain", statoLayoutMain);
+                startActivity(intent);
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.

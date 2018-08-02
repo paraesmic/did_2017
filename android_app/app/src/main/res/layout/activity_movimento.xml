@@ -10,15 +10,15 @@
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@color/colorPrimary"
         android:elevation="4dp"
-        app:titleTextColor="#ffffff"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:titleTextColor="#ffffff" />
 
 
     <ImageView
@@ -51,6 +51,22 @@
         app:layout_constraintTop_toTopOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.0" />
 
+    <radial.semicircularmenu.SemiCircularRadialMenu
+        android:id="@+id/radial_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="17dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
     <!--<it.polito.did.app_android.LampView
         android:id="@+id/lampView"
         android:layout_width="wrap_content"
@@ -65,8 +81,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />-->
 
-    <it.polito.did.app_android.RadialMenu>
 
-    </it.polito.did.app_android.RadialMenu>
 
 </android.support.constraint.ConstraintLayout>

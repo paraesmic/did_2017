@@ -11,7 +11,9 @@ public class LampManager {
     private boolean flag = true;
     private static final LampManager instance = new LampManager();
     int i = 0;
+
     private LampManager() {
+
     }
 
     public static LampManager getInstance() {
@@ -20,6 +22,11 @@ public class LampManager {
 
     public List<Lampada> getLamps() {
         return lista_lampade;
+    }
+
+    public void setLamps(List<Lampada> lista_nuova){
+     this.lista_lampade = lista_nuova;
+        return;
     }
 
     public void discover(/*Runnable done*/) {

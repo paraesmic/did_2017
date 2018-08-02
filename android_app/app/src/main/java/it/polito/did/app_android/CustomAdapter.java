@@ -20,6 +20,7 @@ public class CustomAdapter extends BaseAdapter {
     LampManager manager = LampManager.getInstance();
     final List<Lampada> lista_lampade = manager.getLamps();
 
+
     public CustomAdapter(Context ctx){
         this.context = ctx;
     }
@@ -67,19 +68,21 @@ public class CustomAdapter extends BaseAdapter {
             Log.i("tag","e' accesa");
         }
 
+        final View finalV = v;
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 Lampada lamp = lista_lampade.get(i);
               if(b){
+                  finalV.setBackgroundColor(Color.YELLOW);
                   lamp.turnOn();
                   Log.i("switch", "on");
               }
               if(!b){
+                  finalV.setBackgroundColor(Color.WHITE);
                   lamp.turnOff();
                   Log.i("switch", "off");
               }
-         //  refreshData(lista_lampade);
             }
         });
         return v;
@@ -87,9 +90,5 @@ public class CustomAdapter extends BaseAdapter {
 
     }
 
-    public void refreshData(List<Lampada> lista_aggiornata) {
-        this.lista_lampade.clear();
-        this.lista_lampade.addAll(lista_aggiornata);
-        notifyDataSetChanged();
-    }
+
 }

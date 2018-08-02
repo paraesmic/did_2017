@@ -8,6 +8,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import radial.semicircularmenu.SemiCircularRadialMenu;
+import radial.semicircularmenu.SemiCircularRadialMenuItem;
+
 public class MovimentoActivity extends AppCompatActivity {
 
 
@@ -22,6 +25,10 @@ public class MovimentoActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
+
+        SemiCircularRadialMenu menu = findViewById(R.id.radial_menu);
+        int drawableResourceId = this.getResources().getIdentifier("lamp1_64", "drawable", this.getPackageName());
+        menu.addMenuItem("primoItem", new SemiCircularRadialMenuItem("primoItem", getApplicationContext().getResources().getDrawable(drawableResourceId),"ciao"));
 
 //        myToolbar.setNavigationIcon(R.drawable.backarrow);
 //        myToolbar.setNavigationOnClickListener(
