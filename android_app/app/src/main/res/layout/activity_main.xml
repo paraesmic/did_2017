@@ -40,6 +40,7 @@
         android:padding="8dp"
         android:numColumns="auto_fit"
         android:stretchMode="columnWidth"
+        android:visibility="gone"
         android:gravity="center"
         android:columnWidth="100dp"
         />
