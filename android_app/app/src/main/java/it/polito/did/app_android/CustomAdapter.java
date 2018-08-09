@@ -1,6 +1,7 @@
 package it.polito.did.app_android;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,7 +19,6 @@ import static android.graphics.Color.YELLOW;
 public class CustomAdapter extends BaseAdapter {
     private Context context;
     LampManager manager = LampManager.getInstance();
-    final List<Lampada> lista_lampade = manager.getLamps();
 
 
     public CustomAdapter(Context ctx){
@@ -27,12 +27,12 @@ public class CustomAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return lista_lampade.size();
+        return LampManager.lista_lampade.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return lista_lampade.get(i);
+        return LampManager.lista_lampade.get(i);
     }
 
     @Override
@@ -46,33 +46,28 @@ public class CustomAdapter extends BaseAdapter {
             LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v=li.inflate(R.layout.lampada_item_layout, p, false);
         }
-        TextView tv = (TextView) v.findViewById(R.id.testo_lampada);
-        Switch sw = (Switch) v.findViewById(R.id.switch_isOn);
-       tv.setText(lista_lampade.get(i).toString() + "\n \n" + lista_lampade.get(i).getIpAddress());
-       Log.i("Completata", "View" + i + "nella lista");
-//        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                lista_lampade.get(i).turnOn();
-//            }
-//        });
-        Lampada lamp = lista_lampade.get(i);
+        TextView tv = v.findViewById(R.id.testo_lampada);
+        Switch sw = v.findViewById(R.id.switch_isOn);
+       tv.setText(LampManager.lista_lampade.get(i).toString() + "\n \n" + LampManager.lista_lampade.get(i).getIpAddress());
+       Log.i("Completata", "View " + i + "nella lista");
+
+        Lampada lamp = LampManager.lista_lampade.get(i);
         if(!lamp.isOn) {
             v.setBackgroundColor(Color.WHITE);
             sw.setChecked(false);
-            Log.i("tag","e' spenta");
+            Log.i("list","e' spenta " + i);
         }
         else if(lamp.isOn){
             v.setBackgroundColor(YELLOW);
             sw.setChecked(true);
-            Log.i("tag","e' accesa");
+            Log.i("list","e' accesa " + i);
         }
 
         final View finalV = v;
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Lampada lamp = lista_lampade.get(i);
+                Lampada lamp = LampManager.lista_lampade.get(i);
               if(b){
                   finalV.setBackgroundColor(Color.YELLOW);
                   lamp.turnOn();
@@ -85,6 +80,16 @@ public class CustomAdapter extends BaseAdapter {
               }
             }
         });
+
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), SecondaryActivity.class);
+                intent.putExtra("currentLamp_index", i);
+                view.getContext().startActivity(intent);
+            }
+        });
+
         return v;
 
 

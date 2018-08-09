@@ -23,14 +23,17 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    int statoLayoutMain = 0;
+
     LampManager manager = LampManager.getInstance();
+    ListView lista_layout;
+    GridView grid_layout;
+    CustomGridAdapter g_adapter;
+    CustomAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        getIntent().putExtra("statoLayoutMain", 0);
         setContentView(R.layout.activity_main);
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
@@ -38,65 +41,27 @@ public class MainActivity extends AppCompatActivity {
 
         // da usare una volta imparato ad usare il manager!
         manager.discover();
-        final List<Lampada> lista_lampade = manager.getLamps();
+
 
         //int nLampade = 12; //dato che non prendiamo le lampade da nessuna parte facciamo che siano 6
-//        for (int i = 0; i < nLampade; i++) {
-//            Lampada lamp = new Lampada("urltemp");
-//            lista_lampade.add(lamp);
-//        }
+       /* for (int i = 0; i < 3; i++) {
+            Lampada lamp = new Lampada("urltemp","null", true);
+        manager.lista_lampade.add(lamp);
+       }*/
 
         ListView root = findViewById(R.id.list_layout);
-        CustomAdapter adapter = new CustomAdapter(this);
-
-        root.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(MainActivity.this, SecondaryActivity.class);
-                intent.putExtra("currentLamp_index", i);
-                intent.putExtra("statoLayoutMain", statoLayoutMain);
-
-                startActivity(intent);
-
-            }
-        });
+        adapter = new CustomAdapter(this);
         root.setAdapter(adapter);
 
-            Log.i("avvisoMain", "loopGridAdapter");
-            GridView gridView = findViewById(R.id.grid_layout);
-            final CustomGridAdapter g_adapter = new CustomGridAdapter(this, statoLayoutMain);
-            gridView.setAdapter(g_adapter);
+        GridView gridView = findViewById(R.id.grid_layout);
+        g_adapter = new CustomGridAdapter(this);
+        gridView.setAdapter(g_adapter);
 
-            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    CardView cv = (CardView) view;
-                    Lampada lamp = lista_lampade.get(i);
-                    if (!lamp.isOn) {
-                        cv.setCardBackgroundColor(Color.YELLOW);
-                        Log.i("MAIN", "cambiocolore GIALLO" + " view" + i);
-                        TextView t = (TextView) view.findViewById(R.id.grid_item_isOn_text);
-                        t.setText("ACCESA");
-                        lamp.turnOn();
-                        Log.i("MAIN", "accendo" + " view" + i);
-                    } else {
-                        cv.setCardBackgroundColor(Color.WHITE);
+        lista_layout = findViewById(R.id.list_layout);
+        grid_layout = findViewById(R.id.grid_layout);
 
-                        Log.i("MAIN", "cambiocolore BIANCO" + " view" + i);
-                        TextView t = (TextView) view.findViewById(R.id.grid_item_isOn_text);
-                        t.setText("SPENTA");
-                        lamp.turnOff();
-                        Log.i("MAIN", "spengo" + " view" + i);
-                    }
-                }
-            });
-
-
-        ListView lista_layout = (ListView) findViewById(R.id.list_layout);
-        GridView grid_layout = (GridView) findViewById(R.id.grid_layout);
-        statoLayoutMain = getIntent().getExtras().getInt("statoLayoutMain");
-        if ((statoLayoutMain == 0)) {
+        //inizializza
+        if ((manager.statoMain == 0)) {
             lista_layout.setVisibility(View.VISIBLE);
             grid_layout.setVisibility(View.GONE);
         } else {
@@ -111,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        final List<Lampada> lista_lampade = manager.getLamps();
     }
 
     @Override
@@ -148,16 +112,14 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             case R.id.action_update:
-                ListView lista_layout = (ListView) findViewById(R.id.list_layout);
-                GridView grid_layout = (GridView) findViewById(R.id.grid_layout);
                 if (lista_layout.getVisibility() == View.VISIBLE) {
                     lista_layout.setVisibility(View.GONE);
                     grid_layout.setVisibility(View.VISIBLE);
-                    statoLayoutMain = 1;
+                    manager.statoMain = 1;
                 } else {
                     lista_layout.setVisibility(View.VISIBLE);
                     grid_layout.setVisibility(View.GONE);
-                    statoLayoutMain = 0;
+                    manager.statoMain = 0;
                 }
                 return true;
 

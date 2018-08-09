@@ -21,17 +21,14 @@ import java.util.List;
 public class SecondaryActivity extends AppCompatActivity {
 
     LampManager manager = LampManager.getInstance();
-    int statoLayoutMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_secondary);
-        final List<Lampada> lista_lampade = manager.getLamps();
         Bundle bundle = getIntent().getExtras();
         final int currentLamp_index = bundle.getInt("currentLamp_index");
-        final Lampada current = lista_lampade.get(currentLamp_index);
-        int statoLayoutMain = bundle.getInt("statoLayoutMain");
+        final Lampada current = manager.lista_lampade.get(currentLamp_index);
 
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
@@ -67,7 +64,7 @@ public class SecondaryActivity extends AppCompatActivity {
         sb.setProgress(current_intensity);
         //funzionamento seekbar e salvataggio dati
         sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            Lampada current = lista_lampade.get(currentLamp_index);
+            Lampada current = manager.lista_lampade.get(currentLamp_index);
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 current.setIntensity(i);
@@ -93,13 +90,11 @@ public class SecondaryActivity extends AppCompatActivity {
 
                     if(b){
                         current.turnOn();
-                        manager.setLamps(lista_lampade);
                         Log.i("switchSecondary", "on");
 
                     }
                     if(!b){
                         current.turnOff();
-                        manager.setLamps(lista_lampade);
                         Log.i("switchSecondary", "off");
 
                     }
@@ -140,16 +135,13 @@ public class SecondaryActivity extends AppCompatActivity {
                 return true;
             case android.R.id.home:
                 Intent intent = new Intent(SecondaryActivity.this, MainActivity.class);
-                intent.putExtra("statoLayoutMain", statoLayoutMain);
                 startActivity(intent);
+                return true;
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
         }
-
-
     }
-
 }
 

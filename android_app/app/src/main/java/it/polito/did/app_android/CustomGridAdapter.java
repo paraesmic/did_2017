@@ -18,26 +18,23 @@ import static android.graphics.Color.YELLOW;
 public class CustomGridAdapter extends BaseAdapter {
 
     private Context context;
-    int statoMain;
     LampManager manager = LampManager.getInstance();
-    final List<Lampada> lista_lampade = manager.getLamps();
+
     int flag = 1;
 
-    public CustomGridAdapter(Context ctx, int statoLayoutMain){
+    public CustomGridAdapter(Context ctx){
         this.context = ctx;
-        final List<Lampada> lista_lampade = manager.getLamps();
-        this.statoMain=statoLayoutMain;
 
     }
 
     @Override
     public int getCount() {
-        return lista_lampade.size();
+        return LampManager.lista_lampade.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return lista_lampade.get(i);
+        return LampManager.lista_lampade.get(i);
     }
 
     @Override
@@ -52,34 +49,51 @@ public class CustomGridAdapter extends BaseAdapter {
             LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v=li.inflate(R.layout.grid_item,p, false);
         }
-        TextView name = (TextView) v.findViewById(R.id.grid_item_name);
-        ImageButton b = (ImageButton) v.findViewById(R.id.grid_item_button);
+        TextView name = v.findViewById(R.id.grid_item_name);
+        ImageButton b = v.findViewById(R.id.grid_item_button);
+
+        final TextView isOn = v.findViewById(R.id.grid_item_isOn_text);
+        name.setText(LampManager.lista_lampade.get(i).toString() + "\n" + LampManager.lista_lampade.get(i).getIpAddress());
+
+
+        if (LampManager.lista_lampade.get(i).isOn) {
+                isOn.setText("ACCESA");
+                v.setBackgroundColor(YELLOW);
+                Log.i("grid", "è accesa " + i);
+        }
+        else {
+            isOn.setText("SPENTA");
+            v.setBackgroundColor(WHITE);
+            Log.i("grid", "è spenta " + i);
+        }
+
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), SecondaryActivity.class);
                 intent.putExtra("currentLamp_index", i);
-                intent.putExtra("statoLayoutMain", statoMain);
                 view.getContext().startActivity(intent);
             }
         });
-        TextView isOn = (TextView) v.findViewById(R.id.grid_item_isOn_text);
-        name.setText(lista_lampade.get(i).toString() + "\n" + lista_lampade.get(i).getIpAddress());
 
 
-            if (lista_lampade.get(i).isOn) {
-                isOn.setText("ACCESA");
-                v.setBackgroundColor(YELLOW);
-                Log.i("GRIDADAPTER", "cambiocolore GIALLO" + " view" + i);
 
-            } else {
+        v.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if(LampManager.lista_lampade.get(i).isOn){
                 isOn.setText("SPENTA");
-                v.setBackgroundColor(WHITE);
-                Log.i("GRIDADAPTER", "cambiocolore BIANCO" + i);
-
-
+                LampManager.lista_lampade.get(i).turnOff();
+                Log.i("gridOnClick", "spenta " + i);
+                view.setBackgroundColor(WHITE);
+            } else{
+                isOn.setText("ACCESA");
+                view.setBackgroundColor(YELLOW);
+                LampManager.lista_lampade.get(i).turnOn();
+                Log.i("gridOnClick", "accesa " + i);
+                }
             }
-
+        });
 
         return v;
     }

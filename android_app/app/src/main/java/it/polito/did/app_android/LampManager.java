@@ -7,13 +7,14 @@ import java.util.List;
 
 public class LampManager {
 
-    public List<Lampada> lista_lampade = new ArrayList<>();
+    public static List<Lampada> lista_lampade = new ArrayList<>();
     private boolean flag = true;
     private static final LampManager instance = new LampManager();
     int i = 0;
+    int statoMain;
 
     private LampManager() {
-
+        statoMain=0;
     }
 
     public static LampManager getInstance() {
@@ -24,11 +25,6 @@ public class LampManager {
         return lista_lampade;
     }
 
-    public void setLamps(List<Lampada> lista_nuova){
-     this.lista_lampade = lista_nuova;
-        return;
-    }
-
     public void discover(/*Runnable done*/) {
 
         //inizia una ricerca di lampade
@@ -36,7 +32,7 @@ public class LampManager {
         int nLampade = 3; //dato che non prendiamo le lampade da nessuna parte facciamo che siano 6
         if (flag == true) {
             for (i = 0; i < nLampade; i++) {
-                Lampada lamp = new Lampada("Ciccio" + i, "urltemp", getBoolean());
+                Lampada lamp = new Lampada("Ciccio" + i, "urltemp", true);
                 lista_lampade.add(lamp);
             }
             flag = false;
