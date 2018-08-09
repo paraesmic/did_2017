@@ -11,7 +11,7 @@ public class LampManager {
     private boolean flag = true;
     private static final LampManager instance = new LampManager();
     int i = 0;
-    int statoMain;
+    public static int statoMain;
 
     private LampManager() {
         statoMain=0;

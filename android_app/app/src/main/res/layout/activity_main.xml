@@ -24,11 +24,11 @@
         />
 
 
-    <ListView
-        android:id="@+id/list_layout"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible"/>
+        android:visibility="visible" />
 
     <GridView
         android:layout_width="match_parent"
