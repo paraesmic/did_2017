@@ -27,8 +27,23 @@ public class MovimentoActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
         SemiCircularRadialMenu menu = findViewById(R.id.radial_menu);
+
         int drawableResourceId = this.getResources().getIdentifier("lamp1_64", "drawable", this.getPackageName());
-        menu.addMenuItem("primoItem", new SemiCircularRadialMenuItem("primoItem", getApplicationContext().getResources().getDrawable(drawableResourceId),"ciao"));
+//        int drawableResourceId2 = this.getResources().getIdentifier("Icona1_64", "drawable", this.getPackageName());
+//        int drawableResourceId3 = this.getResources().getIdentifier("Icona2_64", "drawable", this.getPackageName());
+//        int drawableResourceId4 = this.getResources().getIdentifier("Icona1_64", "drawable", this.getPackageName());
+        SemiCircularRadialMenuItem item_1 =  new SemiCircularRadialMenuItem("primoItem", getApplicationContext().getResources().getDrawable(drawableResourceId),"ciao");
+        SemiCircularRadialMenuItem item_2 =  new SemiCircularRadialMenuItem("secondoItem", getApplicationContext().getResources().getDrawable(drawableResourceId),"ciao");
+        SemiCircularRadialMenuItem item_3 =  new SemiCircularRadialMenuItem("terzoItem", getApplicationContext().getResources().getDrawable(drawableResourceId),"ciao");
+        SemiCircularRadialMenuItem item_4 =  new SemiCircularRadialMenuItem("quartoItem", getApplicationContext().getResources().getDrawable(drawableResourceId),"ciao");
+        SemiCircularRadialMenuItem item_5 =  new SemiCircularRadialMenuItem("quintoItem", getApplicationContext().getResources().getDrawable(drawableResourceId),"ciao");
+
+        menu.addMenuItem("primoItem", item_1);
+        menu.addMenuItem("secondoItem ", item_2);
+        menu.addMenuItem("terzoItem", item_3);
+        menu.addMenuItem("quartoItem", item_4);
+        menu.addMenuItem("quintoItem", item_5);
+
 
 //        myToolbar.setNavigationIcon(R.drawable.backarrow);
 //        myToolbar.setNavigationOnClickListener(

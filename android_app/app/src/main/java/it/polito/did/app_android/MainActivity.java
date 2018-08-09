@@ -63,8 +63,7 @@ public class MainActivity extends AppCompatActivity {
         });
         root.setAdapter(adapter);
 
-        for (int i = 0; i < lista_lampade.size(); i++) {
-            Log.i("avvisoMain", "loopGridAdapter" + i);
+            Log.i("avvisoMain", "loopGridAdapter");
             GridView gridView = findViewById(R.id.grid_layout);
             final CustomGridAdapter g_adapter = new CustomGridAdapter(this, statoLayoutMain);
             gridView.setAdapter(g_adapter);
@@ -93,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-        }
+
         ListView lista_layout = (ListView) findViewById(R.id.list_layout);
         GridView grid_layout = (GridView) findViewById(R.id.grid_layout);
         statoLayoutMain = getIntent().getExtras().getInt("statoLayoutMain");

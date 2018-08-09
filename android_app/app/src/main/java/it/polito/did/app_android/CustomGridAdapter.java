@@ -66,21 +66,21 @@ public class CustomGridAdapter extends BaseAdapter {
         TextView isOn = (TextView) v.findViewById(R.id.grid_item_isOn_text);
         name.setText(lista_lampade.get(i).toString() + "\n" + lista_lampade.get(i).getIpAddress());
 
-        if(flag <= lista_lampade.size()) {
+
             if (lista_lampade.get(i).isOn) {
                 isOn.setText("ACCESA");
                 v.setBackgroundColor(YELLOW);
                 Log.i("GRIDADAPTER", "cambiocolore GIALLO" + " view" + i);
-                flag++;
-                Log.i("GRIDADAPTER", "flag vale " + flag);
+
             } else {
                 isOn.setText("SPENTA");
                 v.setBackgroundColor(WHITE);
                 Log.i("GRIDADAPTER", "cambiocolore BIANCO" + i);
-                flag++;
-                Log.i("GRIDADAPTER", "flag vale " + flag);
+
+
             }
-        }
+
+
         return v;
     }
 }
