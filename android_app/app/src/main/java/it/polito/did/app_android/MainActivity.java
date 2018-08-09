@@ -55,28 +55,32 @@ public class MainActivity extends AppCompatActivity {
        }*/
 
        recycler_layout = findViewById(R.id.recycler_layout);
-       recycler_layout.setLayoutManager(new LinearLayoutManager(this));
+       if(manager.statoMain==0)
+           recycler_layout.setLayoutManager(new LinearLayoutManager(this));
+       else
+           recycler_layout.setLayoutManager(new GridLayoutManager(this,3));
+
        recyclerViewAdapter = new RecyclerViewAdapter(this);
        recycler_layout.setAdapter(recyclerViewAdapter);
 //        ListView root = findViewById(R.id.list_layout);
 //        adapter = new CustomAdapter(this);
 //        root.setAdapter(adapter);
-
-        grid_layout = findViewById(R.id.grid_layout);
-        g_adapter = new CustomGridAdapter(this);
-        grid_layout.setAdapter(g_adapter);
-
-        //lista_layout = findViewById(R.id.lista_layout);
-
-        //inizializza
-        if ((manager.statoMain == 0)) {
-            recycler_layout.setVisibility(View.VISIBLE);
-            grid_layout.setVisibility(View.GONE);
-        } else {
-            recycler_layout.setVisibility(View.GONE);
-            grid_layout.setVisibility(View.VISIBLE);
-
-        }
+//
+//        grid_layout = findViewById(R.id.grid_layout);
+//        g_adapter = new CustomGridAdapter(this);
+//        grid_layout.setAdapter(g_adapter);
+//
+//        //lista_layout = findViewById(R.id.lista_layout);
+//
+//        //inizializza
+//        if ((manager.statoMain == 0)) {
+//            recycler_layout.setVisibility(View.VISIBLE);
+//            grid_layout.setVisibility(View.GONE);
+//        } else {
+//            recycler_layout.setVisibility(View.GONE);
+//            grid_layout.setVisibility(View.VISIBLE);
+//
+//        }
 
 
     }
@@ -113,9 +117,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.action_settings:
                 startActivity(new Intent(MainActivity.this, SettingsActivity.class));
-//                    getFragmentManager().beginTransaction()
-//                            .add(R.id.container, new SettingsFragment())
-//                            .commit();
                 Log.i("Hello", "Hello");
                 return true;
 
