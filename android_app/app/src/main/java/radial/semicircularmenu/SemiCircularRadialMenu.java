@@ -62,7 +62,7 @@ public class SemiCircularRadialMenu extends View {
 	private float mShadowRadius = 5 * getResources().getDisplayMetrics().density;	
 	private boolean isShowMenuText = false;	
 	private int mOrientation = HORIZONTAL_BOTTOM;	
-	private int centerRadialColor = Color.WHITE;	
+	private int centerRadialColor = Color.WHITE;
 	private int mShadowColor = Color.GRAY;	
 	private String openMenuText = "Open";	
 	private String closeMenuText = "Close";	
@@ -135,8 +135,9 @@ public class SemiCircularRadialMenu extends View {
 		
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN:
+			Log.i("MotionEvent.ACTION_DOWN","TENTA DI FARE COSE");
 			if(mMenuCenterButtonRect.contains(x, y)) {
-				centerRadialColor = RadialMenuColors.HOLO_LIGHT_BLUE;
+				centerRadialColor = RadialMenuColors.HOLO_LIGHT_ORANGE;
 				isMenuTogglePressed = true;
 				invalidate();
 			} else if(isMenuVisible) {
@@ -149,8 +150,8 @@ public class SemiCircularRadialMenu extends View {
 								break;
 							}
 					}
-					mMenuItems.get(mPressedMenuItemID)
-						.setBackgroundColor(mMenuItems.get(mPressedMenuItemID).getMenuSelectedColor());
+					Log.i("onPressEvent", "tenta di cambiare colore sfondo");
+					mMenuItems.get(mPressedMenuItemID).setBackgroundColor(mMenuItems.get(mPressedMenuItemID).getMenuSelectedColor());
 					invalidate();
 				}
 			}

@@ -16,25 +16,10 @@
                             <entry key="actionbar">
                               <value>
                                 <PersistentState>
-                                  <option name="children">
-                                    <map>
-                                      <entry key="clipartAsset">
-                                        <value>
-                                          <PersistentState>
-                                            <option name="values">
-                                              <map>
-                                                <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_more_vert_black_24dp.xml" />
-                                              </map>
-                                            </option>
-                                          </PersistentState>
-                                        </value>
-                                      </entry>
-                                    </map>
-                                  </option>
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/desk-lamp-2.png" />
+                                      <entry key="imageAsset" value="C:\Users\Luca\Desktop\app\Icona1bn.png" />
                                       <entry key="outputName" value="desklamp1" />
                                     </map>
                                   </option>
@@ -46,20 +31,18 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="ffffff" />
+                                      <entry key="backgroundImage" value="C:\Users\Luca\Desktop\app\Icona1bn.png" />
                                       <entry key="backgroundLayerName" value="ic_launcher_background" />
-                                      <entry key="foregroundAssetType" value="CLIP_ART" />
-                                      <entry key="foregroundLayerName" value="ic_launcher_foreground" />
-                                      <entry key="outputName" value="search_icon_menu" />
+                                      <entry key="foregroundImage" value="C:\Users\Luca\Desktop\app\Icona3 copiaPiccola.png" />
+                                      <entry key="foregroundLayerName" value="icona_lampada3" />
+                                      <entry key="outputName" value="ic_lampada3" />
                                     </map>
                                   </option>
                                 </PersistentState>
                               </value>
                             </entry>
-                          </map>
-                        </option>
-                        <option name="values">
-                          <map>
-                            <entry key="outputIconType" value="ACTIONBAR" />
                           </map>
                         </option>
                       </PersistentState>

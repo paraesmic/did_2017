@@ -3,6 +3,7 @@ package it.polito.did.app_android;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -16,8 +17,6 @@ import android.widget.TextView;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>{
 
     Context context;
-
-
 
     public RecyclerViewAdapter(Context ctx){
         this.context = ctx;
@@ -41,6 +40,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final Lampada current = LampManager.lista_lampade.get(position);
         holder.name.setText(current.toString());
+        holder.image.setImageDrawable((Drawable.createFromPath(current.getPicture());
         if(LampManager.statoMain==0){
 
             holder.sw.setChecked(current.isOn);

@@ -4,10 +4,8 @@ package it.polito.did.app_android;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,25 +13,17 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
-
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
 
     LampManager manager = LampManager.getInstance();
-   // ListView lista_layout;
+
     RecyclerView recycler_layout;
     GridView grid_layout;
-    CustomGridAdapter g_adapter;
     RecyclerViewAdapter recyclerViewAdapter;
-   // CustomAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,32 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
        recyclerViewAdapter = new RecyclerViewAdapter(this);
        recycler_layout.setAdapter(recyclerViewAdapter);
-//        ListView root = findViewById(R.id.list_layout);
-//        adapter = new CustomAdapter(this);
-//        root.setAdapter(adapter);
-//
-//        grid_layout = findViewById(R.id.grid_layout);
-//        g_adapter = new CustomGridAdapter(this);
-//        grid_layout.setAdapter(g_adapter);
-//
-//        //lista_layout = findViewById(R.id.lista_layout);
-//
-//        //inizializza
-//        if ((manager.statoMain == 0)) {
-//            recycler_layout.setVisibility(View.VISIBLE);
-//            grid_layout.setVisibility(View.GONE);
-//        } else {
-//            recycler_layout.setVisibility(View.GONE);
-//            grid_layout.setVisibility(View.VISIBLE);
-//
-//        }
 
-
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
     }
 
     @Override
@@ -121,16 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             case R.id.action_update:
-//                if (recycler_layout.getVisibility() == View.VISIBLE) {
-//                    recycler_layout.setVisibility(View.GONE);
-//                    grid_layout.setVisibility(View.VISIBLE);
-//                    manager.statoMain = 1;
-//
-//                } else {
-//                    recycler_layout.setVisibility(View.VISIBLE);
-//                    grid_layout.setVisibility(View.GONE);
-//                    manager.statoMain = 0;
-//                }
+
                 if(manager.statoMain==0){
                     manager.statoMain=1;
                     recycler_layout.setLayoutManager(new GridLayoutManager(this, 3));

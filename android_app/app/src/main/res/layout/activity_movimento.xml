@@ -51,22 +51,34 @@
         app:layout_constraintTop_toTopOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.0" />
 
-    <radial.semicircularmenu.SemiCircularRadialMenu
-        android:id="@+id/radial_menu"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="4dp"
+        android:id="@+id/testo_posizione_corrente"
+        android:text="Posizione default"
+        android:textColor="@color/arancione"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/radial_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <radial.semicircularmenu.SemiCircularRadialMenu
+        android:id="@+id/radial_menu"
+        ottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.84000003" />
+        app:layout_constraintVertical_bias="1.0"
+        />
 
 
     <!--<it.polito.did.app_android.LampView

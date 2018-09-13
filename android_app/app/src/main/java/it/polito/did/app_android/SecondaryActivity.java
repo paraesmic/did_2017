@@ -15,8 +15,6 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import java.util.List;
-
 
 public class SecondaryActivity extends AppCompatActivity {
 
@@ -104,7 +102,9 @@ public class SecondaryActivity extends AppCompatActivity {
         bottone_luce.setOnClickListener(new View.OnClickListener() {
                                                  @Override
                                                  public void onClick(View view) {
-                                                     startActivity(new Intent(SecondaryActivity.this, LuceActivity.class));
+                                                     Intent intent = new Intent(view.getContext(), LuceActivity.class);
+                                                     intent.putExtra("currentLamp_index", currentLamp_index);
+                                                     view.getContext().startActivity(intent);
                                                  }
                                              }
                                              );
@@ -112,7 +112,9 @@ public class SecondaryActivity extends AppCompatActivity {
         bottone_movimento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SecondaryActivity.this, MovimentoActivity.class));
+                Intent intent = new Intent(view.getContext(), MovimentoActivity.class);
+                intent.putExtra("currentLamp_index", currentLamp_index);
+                view.getContext().startActivity(intent);
             }
         }
         );
@@ -133,7 +135,7 @@ public class SecondaryActivity extends AppCompatActivity {
             case R.id.action_settings:
                 startActivity(new Intent(SecondaryActivity.this, SettingsActivity.class));
                 return true;
-            case android.R.id.home:
+            case R.id.home:
                 Intent intent = new Intent(SecondaryActivity.this, MainActivity.class);
                 startActivity(intent);
                 return true;

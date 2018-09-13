@@ -11,18 +11,19 @@ import android.view.MenuItem;
 import com.larswerkman.holocolorpicker.ColorPicker;
 import com.larswerkman.holocolorpicker.SaturationBar;
 
-import java.util.List;
-
 public class LuceActivity extends AppCompatActivity {
 
     LampManager manager = LampManager.getInstance();
-    final List<Lampada> lista_lampade = manager.getLamps();
+    int currentLamp_index = manager.getCurrent_lamp();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_luce);
+//        Bundle bundle = getIntent().getExtras();
+//        currentLamp_index= bundle.getInt("currentLamp_index");
+        final Lampada current = manager.lista_lampade.get(currentLamp_index);
 
         Intent intent = getIntent();
         ColorPicker picker = findViewById(R.id.colorPicker);
@@ -72,6 +73,12 @@ public class LuceActivity extends AppCompatActivity {
             case R.id.action_update:
                 // User chose the "Favorite" action, mark the current item
                 // as a favorite...
+                return true;
+
+            case R.id.home:
+                Intent intent = new Intent(LuceActivity.this, SecondaryActivity.class);
+                intent.putExtra("currentLamp_index", currentLamp_index );
+                startActivity(intent);
                 return true;
 
             default:

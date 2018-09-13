@@ -1,13 +1,13 @@
 package it.polito.did.app_android;
 
-import android.graphics.Bitmap;
+import java.util.Random;
 
 public class Lampada {
     String nome;
     String url;
     int RGB;
     int intensity;
-    Bitmap Picture;
+    String Picture;
     Boolean isOn;
     String ipAddress;
 
@@ -15,6 +15,12 @@ public class Lampada {
         this.nome = nome;
         this.ipAddress = ipAddress;
         isOn= status;
+        Random r = new Random();
+        int n = r.nextInt(2);
+        if(n == 0){
+            Picture = "" + R.drawable.Icona1;
+        }
+
     }
 
     public String getNome() {
@@ -41,11 +47,11 @@ public class Lampada {
         this.intensity = intensity;
     }
 
-    public Bitmap getPicture() {
+    public String getPicture() {
         return Picture;
     }
 
-    public void setPicture(Bitmap picture) {
+    public void setPicture(String picture) {
         Picture = picture;
     }
 
