@@ -40,14 +40,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final Lampada current = LampManager.lista_lampade.get(position);
         holder.name.setText(current.toString());
-        holder.image.setImageDrawable((Drawable.createFromPath(current.getPicture());
+    //    holder.image.setImageDrawable((Drawable.createFromPath(current.getPicture());
         if(LampManager.statoMain==0){
 
             holder.sw.setChecked(current.isOn);
             if(current.isOn){
-                holder.cl.setBackgroundColor(Color.YELLOW);
+               // holder.cl.setBackgroundColor(Color.YELLOW);
+                holder.cl.setBackgroundColor(Color.parseColor("#F2EAE3"));
             } else {
-                holder.cl.setBackgroundColor(Color.WHITE);
+               // holder.cl.setBackgroundColor(Color.WHITE);
+                holder.cl.setBackgroundColor(Color.parseColor("#80F2EAE3"));
             }
 
         holder.cl.setOnClickListener(new View.OnClickListener() {
@@ -63,10 +65,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             public void onClick(View view) {
                 if(current.isOn){
                     current.turnOff();
-                    holder.cl.setBackgroundColor(Color.WHITE);
+                    holder.cl.setBackgroundColor(Color.parseColor("#80F2EAE3"));
                 } else{
                     current.turnOn();
-                    holder.cl.setBackgroundColor(Color.YELLOW);
+                    holder.cl.setBackgroundColor(Color.parseColor("#F2EAE3"));
                 }
             }
         });
@@ -76,10 +78,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
             if(LampManager.lista_lampade.get(position).isOn){
                 holder.isOnText.setText("ACCESA");
-                holder.card_view.setBackgroundColor(Color.YELLOW);
+                holder.card_view.setBackgroundColor(Color.parseColor("#F2EAE3"));
             } else {
                 holder.isOnText.setText("SPENTA");
-                holder.card_view.setBackgroundColor(Color.WHITE);
+                holder.card_view.setBackgroundColor(Color.parseColor("#80F2EAE3"));
             }
             holder.card_view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -87,11 +89,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     if(current.isOn){
                         current.turnOff();
                         holder.isOnText.setText("SPENTA");
-                        holder.card_view.setBackgroundColor(Color.WHITE);
+                        holder.card_view.setBackgroundColor(Color.parseColor("#80F2EAE3"));
                     } else{
                         current.turnOn();
                         holder.isOnText.setText("ACCESA");
-                        holder.card_view.setBackgroundColor(Color.YELLOW);
+                        holder.card_view.setBackgroundColor(Color.parseColor("#F2EAE3"));
                     }
                 }
             });

@@ -1,8 +1,6 @@
 package it.polito.did.app_android;
 
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +12,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.GridView;
-import android.widget.SearchView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -60,13 +57,13 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.mainmenu, menu);
 
-        // Associate searchable configuration with the SearchView
-        SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView =
-                (SearchView) menu.findItem(R.id.action_search).getActionView();
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(getComponentName()));
+//        // Associate searchable configuration with the SearchView
+//        SearchManager searchManager =
+//                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+//        SearchView searchView =
+//                (SearchView) menu.findItem(R.id.action_search).getActionView();
+//        searchView.setSearchableInfo(
+//                searchManager.getSearchableInfo(getComponentName()));
 
 
         return true;
@@ -77,26 +74,28 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
 
-            case R.id.action_search:
-                onSearchRequested();
-                return true;
+//            case R.id.action_search:
+//                onSearchRequested();
+//                return true;
             case R.id.action_settings:
                 startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                 Log.i("Hello", "Hello");
                 return true;
 
-            case R.id.action_update:
+            case R.id.action_changeview:
 
                 if(manager.statoMain==0){
                     manager.statoMain=1;
                     recycler_layout.setLayoutManager(new GridLayoutManager(this, 3));
                     recycler_layout.setAdapter(recyclerViewAdapter);
                     recyclerViewAdapter.notifyDataSetChanged();
+                    item.setIcon(R.drawable.action_view_list);
                 }else{
                     manager.statoMain=0;
                     recycler_layout.setLayoutManager(new LinearLayoutManager(this));
                     recycler_layout.setAdapter(recyclerViewAdapter);
                     recyclerViewAdapter.notifyDataSetChanged();
+                    item.setIcon(R.drawable.action_view_comfy);
                 }
                 return true;
 

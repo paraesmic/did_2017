@@ -18,7 +18,7 @@ public class Lampada {
         Random r = new Random();
         int n = r.nextInt(2);
         if(n == 0){
-            Picture = "" + R.drawable.Icona1;
+            Picture = "" + R.drawable.icona1;
         }
 
     }

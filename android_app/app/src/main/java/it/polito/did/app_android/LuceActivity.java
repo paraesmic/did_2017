@@ -1,6 +1,7 @@
 package it.polito.did.app_android;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -36,6 +37,7 @@ public class LuceActivity extends AppCompatActivity {
 
 
 //To get the color
+        picker.setColor(Color.parseColor("#FFdF60"));
         picker.getColor();
 
 //To set the old selected color u can do it like this
@@ -70,7 +72,7 @@ public class LuceActivity extends AppCompatActivity {
 
                 return true;
 
-            case R.id.action_update:
+            case R.id.action_changeview:
                 // User chose the "Favorite" action, mark the current item
                 // as a favorite...
                 return true;

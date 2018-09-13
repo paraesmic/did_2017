@@ -1,173 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    android:background="#80F2EAE3"
-    android:orientation="vertical"
-    tools:context="it.polito.did.app_android.SecondaryActivity"
-    >
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/xhdpi_v1">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:elevation="4dp"
         app:titleTextColor="#ffffff"
+        android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
 
-    <ImageView
-        android:id="@+id/imageLampada_secondary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+         />
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="#F2EAE3"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
-        app:layout_constraintVertical_bias="0.03"
-        app:srcCompat="@mipmap/ic_launcher" />
+        tools:context="it.polito.did.app_android.SecondaryActivity">
 
-    <TextView
-        android:id="@+id/nomeLampada_secondary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/nome_lampada"
-        android:textColor="@android:color/background_dark"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageLampada_secondary"
-        app:layout_constraintEnd_toEndOf="@+id/imageView2"
-        app:layout_constraintHorizontal_bias="0.14"
-        app:layout_constraintStart_toEndOf="@+id/imageLampada_secondary"
-        app:layout_constraintTop_toTopOf="@+id/imageLampada_secondary"
-        app:layout_constraintVertical_bias="0.6" />
-
-
-    <SeekBar
-        android:id="@+id/barra_intensita"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:maxHeight="15dp"
-        android:minHeight="15dp"
-        android:progressDrawable="@drawable/custom_seekbar"
-        android:splitTrack="false"
-
-        android:thumb="@drawable/thumb"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageLampada_secondary"
-        app:layout_constraintVertical_bias="0.6" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/barra_intensita"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/barra_intensita"
-        app:layout_constraintTop_toTopOf="@+id/barra_intensita"
-        app:srcCompat="@mipmap/ic_launcher" />
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
-        android:descendantFocusability="afterDescendants"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.30">
-
-        <Button
-            android:id="@+id/bottone_movimento"
-            android:layout_width="match_parent"
-            android:layout_height="51dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="16dp"
-            android:background="@color/giallo"
-            android:paddingBottom="8dp"
-            android:text="@string/testButton1"
-            android:textColor="@color/bianco"
-            android:textSize="15dp"
-            android:textStyle="bold"
+        <ImageView
+            android:id="@+id/imageLampada_secondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bottone_luce"
-            app:layout_constraintVertical_bias="0.01" />
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.03"
+            app:srcCompat="@mipmap/ic_launcher" />
 
-
-        <Button
-            android:id="@+id/bottone_luce"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="24dp"
-            android:background="@color/giallo"
-            android:text="@string/testButton2"
-            android:textColor="@color/bianco"
-            android:textSize="15dp"
+        <TextView
+            android:id="@+id/nomeLampada_secondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/nome_lampada"
+            android:textColor="@android:color/background_dark"
+            android:textSize="24sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imageLampada_secondary"
+            app:layout_constraintEnd_toEndOf="@+id/imageView2"
+            app:layout_constraintHorizontal_bias="0.14"
+            app:layout_constraintStart_toEndOf="@+id/imageLampada_secondary"
+            app:layout_constraintTop_toTopOf="@+id/imageLampada_secondary"
+            app:layout_constraintVertical_bias="0.6" />
+
+
+        <SeekBar
+            android:id="@+id/barra_intensita"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:maxHeight="15dp"
+            android:minHeight="15dp"
+            android:progressDrawable="@drawable/custom_seekbar"
+            android:splitTrack="false"
+
+            android:thumb="@drawable/thumb"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toStartOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageLampada_secondary"
+            app:layout_constraintVertical_bias="0.6" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/barra_intensita"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/barra_intensita"
+            app:layout_constraintTop_toTopOf="@+id/barra_intensita"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="40dp"
+            android:descendantFocusability="afterDescendants"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            app:layout_constraintVertical_bias="0.30">
 
-    </android.support.constraint.ConstraintLayout>
+            <Button
+                android:id="@+id/bottone_movimento"
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/giallo"
+                android:paddingBottom="8dp"
+                android:text="@string/testButton1"
+                android:textColor="@color/bianco"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bottone_luce"
+                app:layout_constraintVertical_bias="0.01" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
 
-        <Switch
+            <Button
+                android:id="@+id/bottone_luce"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/giallo"
+                android:text="@string/testButton2"
+                android:textColor="@color/bianco"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            android:id="@+id/switch_secondary"
+        </android.support.constraint.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:padding="32dp"
-            android:scaleX="2"
-            android:scaleY="2"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-            app:layout_constraintStart_toStartOf="@+id/linearLayout"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-    </LinearLayout>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Switch
+
+                android:id="@+id/switch_secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:padding="32dp"
+                android:scaleX="2"
+                android:scaleY="2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+                app:layout_constraintStart_toStartOf="@+id/linearLayout"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>
