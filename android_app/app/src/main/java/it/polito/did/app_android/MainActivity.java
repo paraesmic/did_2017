@@ -11,7 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.GridView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -19,20 +18,28 @@ public class MainActivity extends AppCompatActivity {
     LampManager manager = LampManager.getInstance();
 
     RecyclerView recycler_layout;
-    GridView grid_layout;
     RecyclerViewAdapter recyclerViewAdapter;
+
+    UDPCommunication udp_task =  new UDPCommunication(new Runnable() {
+        @Override
+        public void run() {
+            recyclerViewAdapter.notifyDataSetChanged();
+        }
+    }
+    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         // da usare una volta imparato ad usare il manager!
-        manager.discover();
+        manager.discover(udp_task);
 
 
         //int nLampade = 12; //dato che non prendiamo le lampade da nessuna parte facciamo che siano 6
@@ -50,6 +57,18 @@ public class MainActivity extends AppCompatActivity {
        recyclerViewAdapter = new RecyclerViewAdapter(this);
        recycler_layout.setAdapter(recyclerViewAdapter);
 
+    }
+
+    @Override
+    protected void onResume() {
+        recyclerViewAdapter.notifyDataSetChanged();
+        super.onResume();
+    }
+
+    @Override
+    protected void onRestart() {
+        recyclerViewAdapter.notifyDataSetChanged();
+        super.onRestart();
     }
 
     @Override

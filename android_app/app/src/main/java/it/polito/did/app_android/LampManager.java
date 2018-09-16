@@ -26,29 +26,25 @@ public class LampManager {
         return lista_lampade;
     }
 
-    public void discover(/*Runnable done*/) {
-
-        //inizia una ricerca di lampade
-        Log.i("avvisoManager", "1");
-        int nLampade = 9; //dato che non prendiamo le lampade da nessuna parte facciamo che siano 6
-        if (flag == true) {
-            for (i = 0; i < nLampade; i++) {
-                Lampada lamp = new Lampada("Ciccio" + i, "urltemp", true);
-                lista_lampade.add(lamp);
-            }
-            flag = false;
-        }
+    public void discover(final UDPCommunication udp) {
+        udp.execute();
+        //addLamp();//da tenere finchè udptask non funge
         //done.run();
     }
 
-    boolean getBoolean() {
-
-        if (i == 0 || i == 2)
-            return true;
-        else
-            return false;
-
+    public void addLamp(String ip, String name){
+        //inizia una ricerca di lampade
+        Log.i("LampManager", " siamo dentro");
+   for(int i=0; i<lista_lampade.size();i++){
+       if(lista_lampade.get(i).getIpAddress().equals(ip)){
+          return;
+            }
+        }
+        Lampada lamp = new Lampada(name, ip, true);
+        lista_lampade.add(lamp);
+        Log.e("LampManager", "creata Lamp: " + name + "con IP: " + ip);
     }
+
 
    public void setCurrent_lamp(int current){
         this.current_lamp=current;

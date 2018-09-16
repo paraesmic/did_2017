@@ -19,13 +19,11 @@ import android.widget.TextView;
 public class SecondaryActivity extends AppCompatActivity {
 
     LampManager manager = LampManager.getInstance();
-
+    int currentLamp_index = manager.getCurrent_lamp();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_secondary);
-        Bundle bundle = getIntent().getExtras();
-        final int currentLamp_index = bundle.getInt("currentLamp_index");
         final Lampada current = manager.lista_lampade.get(currentLamp_index);
 
 
@@ -33,21 +31,8 @@ public class SecondaryActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         ActionBar actionBar = getActionBar();
 
-      android.support.v7.app.ActionBar ab = getSupportActionBar();
+        android.support.v7.app.ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
-
-
-//        myToolbar.setNavigationIcon(R.drawable.backarrow);
-//        myToolbar.setNavigationOnClickListener(
-//                new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        startActivity(new Intent(SecondaryActivity.this, MainActivity.class));
-//                    }
-//                }
-//
-//        );
-
 
         Button bottone_movimento = findViewById(R.id.bottone_movimento);
         Button bottone_luce = findViewById(R.id.bottone_luce);

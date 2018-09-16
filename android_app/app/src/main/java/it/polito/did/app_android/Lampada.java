@@ -1,5 +1,8 @@
 package it.polito.did.app_android;
 
+import android.graphics.Color;
+import android.util.Log;
+
 import java.util.Random;
 
 public class Lampada {
@@ -11,10 +14,14 @@ public class Lampada {
     Boolean isOn;
     String ipAddress;
 
+
     public Lampada(String nome, String ipAddress, Boolean status) {
         this.nome = nome;
         this.ipAddress = ipAddress;
         isOn= status;
+        int[] rgb_diviso = {250, 250, 150}; //<-----R G B!
+        this.setColor(Color.rgb(rgb_diviso[0],rgb_diviso[1],rgb_diviso[2]));
+        Log.e("CreazioneLampada", "il colore settato è: Rosso:" +  Color.red(this.getColor()) + " Verde: " + rgb_diviso[1] + " Blu: " + rgb_diviso[2] + " equivalente a int: " + this.getColor());
         Random r = new Random();
         int n = r.nextInt(2);
         if(n == 0){
@@ -37,6 +44,7 @@ public class Lampada {
 
     public void setColor(int RGB) {
         this.RGB = RGB;
+        //AGGIUNGERE CODICE CHE INVII PACCHETTO A LAMPADA
     }
 
     public int getIntensity() {

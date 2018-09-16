@@ -16,15 +16,13 @@ import radial.semicircularmenu.SemiCircularRadialMenuItem;
 public class MovimentoActivity extends AppCompatActivity {
 
     LampManager manager = LampManager.getInstance();
-    int currentLamp_index;
+    int currentLamp_index = manager.getCurrent_lamp();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movimento);
-        Bundle bundle = getIntent().getExtras();
-        currentLamp_index= bundle.getInt("currentLamp_index");
         final Lampada current = manager.lista_lampade.get(currentLamp_index);
 
         Intent intent = getIntent();
@@ -119,7 +117,6 @@ public class MovimentoActivity extends AppCompatActivity {
 
             case R.id.home:
                 Intent intent = new Intent(MovimentoActivity.this, SecondaryActivity.class);
-                intent.putExtra("currentLamp_index", currentLamp_index );
                 startActivity(intent);
 
             default:
