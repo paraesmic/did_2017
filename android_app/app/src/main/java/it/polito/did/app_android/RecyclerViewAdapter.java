@@ -42,6 +42,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final Lampada current = LampManager.lista_lampade.get(position);
         holder.name.setText(current.toString());
+
+        if(current.battery){
+            holder.image2.setVisibility(View.VISIBLE);
+        }else {
+            holder.image2.setVisibility(View.INVISIBLE);
+        }
     //    holder.image.setImageDrawable((Drawable.createFromPath(current.getPicture());
         if(LampManager.statoMain==0){  //visuale lista
 
@@ -87,6 +93,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 holder.isOnText.setText("SPENTA");
                 holder.card_view.setBackgroundColor(Color.parseColor("#80F2EAE3"));
             }
+
+            if(current.battery){
+                holder.image2.setVisibility(View.VISIBLE);
+            }else {
+                holder.image2.setVisibility(View.INVISIBLE);
+            }
+
+
             holder.card_view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -128,6 +142,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView name;
         Switch sw;
         ImageView image;
+        ImageView image2;
         ImageView bottonepiu;
         TextView isOnText;
         ConstraintLayout cl;
@@ -140,12 +155,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 cl = itemView.findViewById(R.id.singola_lampada);
                 name = itemView.findViewById(R.id.list_item_name);
                 sw = itemView.findViewById(R.id.list_item_switch);
+                image2=itemView.findViewById(R.id.list_item_battery_image);
             }else{
                 card_view = itemView.findViewById(R.id.grid_item);
                 image=itemView.findViewById(R.id.grid_item_image);
                 bottonepiu=itemView.findViewById(R.id.grid_item_button);
                 name=itemView.findViewById(R.id.grid_item_name);
                 isOnText=itemView.findViewById(R.id.grid_item_isOn_text);
+                image2=itemView.findViewById(R.id.list_item_battery_image);
 
             }
 
