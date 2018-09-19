@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".MainActivity"
-    android:background="@drawable/xhdpi_v1">
+    android:background="@drawable/xhdpi_new">
 
 
     <android.support.v7.widget.Toolbar

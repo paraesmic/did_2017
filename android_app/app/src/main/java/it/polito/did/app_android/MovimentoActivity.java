@@ -10,6 +10,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.io.IOException;
+
+import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageView;
 import radial.semicircularmenu.SemiCircularRadialMenu;
 import radial.semicircularmenu.SemiCircularRadialMenuItem;
 
@@ -17,6 +21,7 @@ public class MovimentoActivity extends AppCompatActivity {
 
     LampManager manager = LampManager.getInstance();
     int currentLamp_index = manager.getCurrent_lamp();
+    UDPCommunication udpTask = manager.getUdp_task();
 
 
     @Override
@@ -36,25 +41,44 @@ public class MovimentoActivity extends AppCompatActivity {
         menu.setOpenMenuText("Seleziona posizione");
         menu.setCloseMenuText("Chiudi");
 
+        final GifImageView gif = findViewById(R.id.gif_posizione);
+        TextView testo = findViewById(R.id.testo_posizione_corrente);
+        switch(current.getCurrent_pos()){
+
+            case 100:
+                try {
+                    gif.setImageDrawable(new GifDrawable(getResources(), R.drawable.png_0_degrees));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 135:
+                gif.setImageResource(R.drawable.png_45_degrees);
+                testo.setText("POSIZIONE 45°");
+                break;
+            case 170:
+                gif.setImageResource(R.drawable.png_90_degrees);
+                testo.setText("POSIZIONE 90°");
+                break;
+        }
 
 
 
-        int drawableResourceId1 = this.getResources().getIdentifier("lamp1_64", "drawable", this.getPackageName());
-        int drawableResourceId3 = this.getResources().getIdentifier("ic_lampada1_round", "mipmap", this.getPackageName());
-        int drawableResourceId4 = this.getResources().getIdentifier("ic_lampada2_round", "mipmap", this.getPackageName());
-        int drawableResourceId5 = this.getResources().getIdentifier("ic_lampada3_round", "mipmap", this.getPackageName());
+
+        int drawableResourceId1 = this.getResources().getIdentifier("icon_0_degrees", "drawable", this.getPackageName());
+        int drawableResourceId3 = this.getResources().getIdentifier("icon_45_degrees", "drawable", this.getPackageName());
+        int drawableResourceId4 = this.getResources().getIdentifier("icon_90_degrees", "drawable", this.getPackageName());
 
         final SemiCircularRadialMenuItem item_1 =  new SemiCircularRadialMenuItem("primoItem", getApplicationContext().getResources().getDrawable(drawableResourceId1),"posizione1");
-         final SemiCircularRadialMenuItem item_3 =  new SemiCircularRadialMenuItem("terzoItem", getApplicationContext().getResources().getDrawable(drawableResourceId3),"posizione3");
+        final SemiCircularRadialMenuItem item_3 =  new SemiCircularRadialMenuItem("terzoItem", getApplicationContext().getResources().getDrawable(drawableResourceId3),"posizione3");
         final SemiCircularRadialMenuItem item_4 =  new SemiCircularRadialMenuItem("quartoItem", getApplicationContext().getResources().getDrawable(drawableResourceId4),"posizione4");
-        final SemiCircularRadialMenuItem item_5 =  new SemiCircularRadialMenuItem("quintoItem", getApplicationContext().getResources().getDrawable(drawableResourceId4),"posizione5");
 
 
 
         menu.addMenuItem("primoItem", item_1);
         menu.addMenuItem("terzoItem", item_3);
         menu.addMenuItem("quartoItem", item_4);
-        menu.addMenuItem("quintoItem", item_5);
+
 
 
 
@@ -63,8 +87,11 @@ public class MovimentoActivity extends AppCompatActivity {
         item_1.setOnSemiCircularRadialMenuPressed(new SemiCircularRadialMenuItem.OnSemiCircularRadialMenuPressed() {
             @Override
             public void onMenuItemPressed() {
+                GifImageView gif = findViewById(R.id.gif_posizione);
                 TextView testo = findViewById(R.id.testo_posizione_corrente);
-                testo.setText(item_1.getText());
+                testo.setText("POSIZIONE 0°");
+                gif.setImageResource(R.drawable.png_0_degrees);
+                udpTask.sendUDP("MOV:100", current.getIpAddress());
                 Log.i("item_1", " testo cambiato");
                 menu.dismissMenu();
             }
@@ -73,8 +100,11 @@ public class MovimentoActivity extends AppCompatActivity {
         item_3.setOnSemiCircularRadialMenuPressed(new SemiCircularRadialMenuItem.OnSemiCircularRadialMenuPressed() {
             @Override
             public void onMenuItemPressed() {
+                final GifImageView gif = findViewById(R.id.gif_posizione);
                 TextView testo = findViewById(R.id.testo_posizione_corrente);
-                testo.setText(item_3.getText());
+                testo.setText("POSIZIONE 45°");
+                gif.setImageResource(R.drawable.png_45_degrees);
+                udpTask.sendUDP("MOV:135", current.getIpAddress());
                 Log.i("item_3", " testo cambiato");
                 menu.dismissMenu();
             }
@@ -83,21 +113,16 @@ public class MovimentoActivity extends AppCompatActivity {
         item_4.setOnSemiCircularRadialMenuPressed(new SemiCircularRadialMenuItem.OnSemiCircularRadialMenuPressed() {
             @Override
             public void onMenuItemPressed() {
+                final GifImageView gif = findViewById(R.id.gif_posizione);
                 TextView testo = findViewById(R.id.testo_posizione_corrente);
-                testo.setText(item_4.getText());
+                testo.setText("POSIZIONE 90°");
+                gif.setImageResource(R.drawable.png_90_degrees);
+                udpTask.sendUDP("MOV:170", current.getIpAddress());
                 Log.i("item_4", " testo cambiato");
                 menu.dismissMenu();
             }
         });
-        item_5.setOnSemiCircularRadialMenuPressed(new SemiCircularRadialMenuItem.OnSemiCircularRadialMenuPressed() {
-            @Override
-            public void onMenuItemPressed() {
-                TextView testo = findViewById(R.id.testo_posizione_corrente);
-                testo.setText(item_5.getText());
-                Log.i("item_4", " testo cambiato");
-                menu.dismissMenu();
-            }
-        });
+
     }
 
     @Override
@@ -129,5 +154,5 @@ public class MovimentoActivity extends AppCompatActivity {
 
 
     }
-
 }
+

@@ -1,11 +1,10 @@
 <resources>
-    <string name="app_name">ALADINO</string>
+    <string name="app_name">Aladino</string>
     <string name="nome_lampada">Nome_Lampada</string>
     <string name="testButton1">Movimento</string>
     <string name="testButton2">Luce e Colore</string>
     <string name="luceActivity_name">Luce e Colore</string>
     <string name="movimentoActivity_name">Movimento</string>
-    <string name="Main2Activity_name">Main2</string>
     <string name="confermaButton">Conferma</string>
     <string name="action_update">Aggiorna</string>
     <string name="action_search">Cerca</string>

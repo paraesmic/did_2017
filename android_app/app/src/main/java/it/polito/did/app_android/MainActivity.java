@@ -16,23 +16,23 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity {
 
     LampManager manager = LampManager.getInstance();
-
     RecyclerView recycler_layout;
     RecyclerViewAdapter recyclerViewAdapter;
-
     UDPCommunication udp_task =  new UDPCommunication(new Runnable() {
         @Override
         public void run() {
-            recyclerViewAdapter.notifyDataSetChanged();
+                recyclerViewAdapter.notifyDataSetChanged();
+
         }
     }
+
     );
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
        recyclerViewAdapter = new RecyclerViewAdapter(this);
        recycler_layout.setAdapter(recyclerViewAdapter);
+
 
     }
 
@@ -123,10 +124,7 @@ public class MainActivity extends AppCompatActivity {
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
         }
-
-
     }
-
 }
 
 

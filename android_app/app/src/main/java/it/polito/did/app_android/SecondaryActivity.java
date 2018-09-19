@@ -2,6 +2,7 @@ package it.polito.did.app_android;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,15 +12,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import com.larswerkman.holocolorpicker.ColorPicker;
+import com.larswerkman.holocolorpicker.ValueBar;
 
 
 public class SecondaryActivity extends AppCompatActivity {
 
     LampManager manager = LampManager.getInstance();
     int currentLamp_index = manager.getCurrent_lamp();
+    private UDPCommunication UDPAsynctask = manager.getUdp_task();
+    float[] HSV_color = {0,0,0};
+    int new_rgb_color;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,29 +48,22 @@ public class SecondaryActivity extends AppCompatActivity {
         TextView name = findViewById(R.id.nomeLampada_secondary);
         name.setText(current.getNome());
 
+        final ColorPicker picker = findViewById(R.id.colorPicker2);
         //settaggio intensità
-        SeekBar sb = findViewById(R.id.barra_intensita);
-        int current_intensity = current.getIntensity();
-        sb.setProgress(current_intensity);
-        //funzionamento seekbar e salvataggio dati
-        sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            Lampada current = manager.lista_lampade.get(currentLamp_index);
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                current.setIntensity(i);
-            }
+        ValueBar valueBar = (ValueBar) findViewById(R.id.barra_intensita);
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+        picker.addValueBar(valueBar);
+        picker.setColor(current.getColor());
 
-            }
-
+        valueBar.setOnValueChangedListener(new ValueBar.OnValueChangedListener() {
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+            public void onValueChanged(int value) {
+                int new_color = picker.getColor();
+                current.setColor(new_color);
+                UDPAsynctask.sendUDP("RGB:" + Color.red(new_color) + "," + Color.green(new_color) + "," + Color.blue(new_color), current.getIpAddress());
 
             }
         });
-
         //settaggio On/Off
         Switch sw = findViewById(R.id.switch_secondary);
         sw.setChecked(current.isOn);
@@ -73,11 +73,13 @@ public class SecondaryActivity extends AppCompatActivity {
 
                     if(b){
                         current.turnOn();
+                        UDPAsynctask.sendUDP("PWR:true", current.ipAddress);
                         Log.i("switchSecondary", "on");
 
                     }
                     if(!b){
                         current.turnOff();
+                        UDPAsynctask.sendUDP("PWR:false", current.ipAddress);
                         Log.i("switchSecondary", "off");
 
                     }

@@ -79,7 +79,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.9" />
+            app:layout_constraintVertical_bias="0.85" />
 
         <!--<com.larswerkman.holocolorpicker.SVBar-->
         <!--android:id="@+id/svbar"-->
@@ -94,19 +94,36 @@
         <!--app:layout_constraintStart_toStartOf="parent"-->
         <!--app:layout_constraintTop_toBottomOf="@+id/saturationbar" />-->
 
+
         <com.larswerkman.holocolorpicker.SaturationBar
             android:id="@+id/saturationbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintVertical_bias="0.68" />
+
+
+        <com.larswerkman.holocolorpicker.ValueBar
+            android:id="@+id/valuebar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.79" />
+            app:layout_constraintTop_toBottomOf="@+id/saturationbar"
+            app:layout_constraintVertical_bias="0.050000012" />
 
         <Button
             android:id="@+id/btn_ripristina"
@@ -114,29 +131,29 @@
             android:layout_height="55dp"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:background="#d8d8d8"
             android:text="@string/button_ripristina_testo"
             android:textColor="#ffffff"
             android:textStyle="bold"
             android:visibility="visible"
-            app:layout_constraintStart_toStartOf="@+id/saturationbar"
-            app:layout_constraintTop_toBottomOf="@+id/saturationbar" />
+            app:layout_constraintStart_toStartOf="@+id/valuebar"
+            app:layout_constraintTop_toBottomOf="@+id/valuebar" />
 
         <Button
             android:id="@+id/btn_conferma"
             android:layout_width="110dp"
-            android:layout_height="55dp"
+            android:layout_height="58dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:background="@color/giallo"
             android:text="@string/button_applica_testo"
             android:textColor="#ffffff"
             android:textStyle="bold"
             android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="@+id/saturationbar"
-            app:layout_constraintTop_toBottomOf="@+id/saturationbar" />
+            app:layout_constraintEnd_toEndOf="@+id/valuebar"
+            app:layout_constraintTop_toBottomOf="@+id/valuebar" />
 
 
     </android.support.constraint.ConstraintLayout>

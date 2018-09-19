@@ -1,6 +1,7 @@
 package it.polito.did.app_android;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.widget.Button;
 
 import com.larswerkman.holocolorpicker.ColorPicker;
 import com.larswerkman.holocolorpicker.SaturationBar;
+import com.larswerkman.holocolorpicker.ValueBar;
 
 public class LuceActivity extends AppCompatActivity {
 
@@ -20,8 +22,9 @@ public class LuceActivity extends AppCompatActivity {
     int currentLamp_index = manager.getCurrent_lamp();
     final Lampada current = manager.lista_lampade.get(currentLamp_index);
     int initial_color = current.getColor();
-    int current_color;
     int new_color;
+    public UDPCommunication udp_task = manager.getUdp_task();
+
 
 
     @Override
@@ -36,10 +39,11 @@ public class LuceActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
         final ColorPicker picker = findViewById(R.id.colorPicker);
-//        SVBar svBar = (SVBar) findViewById(R.id.svbar);
         SaturationBar saturationBar = findViewById(R.id.saturationbar);
-//        picker.addSVBar(svBar);
+        ValueBar valueBar = findViewById(R.id.valuebar);
         picker.addSaturationBar(saturationBar);
+        picker.addValueBar(valueBar);
+
 
         picker.setColor(initial_color);
         Log.e("AttivitaLuce", "il colore del picker è:  " + initial_color);
@@ -55,6 +59,7 @@ public class LuceActivity extends AppCompatActivity {
             public void onClick(View view) {
                     picker.setColor(initial_color);
                     current.setColor(initial_color);
+
             }
         });
 
@@ -64,8 +69,11 @@ public class LuceActivity extends AppCompatActivity {
             public void onClick(View view) {
                 new_color = picker.getColor();
                 current.setColor(new_color);
+                udp_task.sendUDP("RGB:" + Color.red(new_color) + "," + Color.green(new_color) + "," + Color.blue(new_color), current.getIpAddress());
+                startActivity(new Intent(LuceActivity.this,SecondaryActivity.class));
             }
         });
+
     }
 
     @Override
@@ -74,6 +82,7 @@ public class LuceActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.secondarymenu, menu);
         return true;
     }
+
 
 
     @Override

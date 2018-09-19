@@ -6,26 +6,28 @@
     android:id="@+id/singola_lampada"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:minHeight="110dp"
     android:layout_margin="4dp"
-    android:descendantFocusability="blocksDescendants"
-    >
+    android:descendantFocusability="blocksDescendants">
 
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/list_item_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
         android:layout_weight="1"
+        android:src="@drawable/icona1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/lamp1_64" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/testo_lampada"
+        android:id="@+id/list_item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -33,29 +35,31 @@
         android:layout_marginStart="8dp"
         android:layout_weight="1"
         android:text="Lampada_1"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-        app:layout_constraintEnd_toStartOf="@+id/switch_isOn"
+        app:layout_constraintBottom_toBottomOf="@+id/list_item_image"
+        app:layout_constraintEnd_toStartOf="@+id/list_item_switch"
         app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+        app:layout_constraintStart_toEndOf="@+id/list_item_image"
+        app:layout_constraintTop_toTopOf="@+id/list_item_image" />
 
     <Switch
-        android:id="@+id/switch_isOn"
+        android:id="@+id/list_item_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.07"
-        android:trackTint="@color/arancione"
-        android:thumbTint="@color/arancione"
-        android:textOn="ON"
+        android:textColor="@color/bianco"
         android:textOff="OFF"
-        android:showText="true"
-
-        />
+        android:textOn="ON"
+        android:thumbTint="@color/arancione"
+        android:trackTint="@color/arancione"
+        app:layout_constraintBottom_toBottomOf="@+id/list_item_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/list_item_name"
+        app:layout_constraintVertical_bias="0.07" />
 </android.support.constraint.ConstraintLayout>
 

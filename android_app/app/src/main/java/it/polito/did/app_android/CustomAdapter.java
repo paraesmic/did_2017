@@ -12,8 +12,6 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import java.util.List;
-
 import static android.graphics.Color.YELLOW;
 
 public class CustomAdapter extends BaseAdapter {
@@ -46,8 +44,8 @@ public class CustomAdapter extends BaseAdapter {
             LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v=li.inflate(R.layout.lampada_item_layout, p, false);
         }
-        TextView tv = v.findViewById(R.id.testo_lampada);
-        Switch sw = v.findViewById(R.id.switch_isOn);
+        TextView tv = v.findViewById(R.id.list_item_name);
+        Switch sw = v.findViewById(R.id.list_item_switch);
        tv.setText(LampManager.lista_lampade.get(i).toString() + "\n \n" + LampManager.lista_lampade.get(i).getIpAddress());
        Log.i("Completata", "View " + i + "nella lista");
 

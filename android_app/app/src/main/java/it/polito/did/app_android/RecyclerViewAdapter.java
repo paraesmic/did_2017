@@ -3,7 +3,6 @@ package it.polito.did.app_android;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -17,9 +16,12 @@ import android.widget.TextView;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>{
 
     Context context;
+    private UDPCommunication UDPAsynctask;
+    LampManager manager = LampManager.getInstance();
 
     public RecyclerViewAdapter(Context ctx){
         this.context = ctx;
+        this.UDPAsynctask = manager.udp_task;
 
     }
 
@@ -41,7 +43,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         final Lampada current = LampManager.lista_lampade.get(position);
         holder.name.setText(current.toString());
     //    holder.image.setImageDrawable((Drawable.createFromPath(current.getPicture());
-        if(LampManager.statoMain==0){
+        if(LampManager.statoMain==0){  //visuale lista
 
             holder.sw.setChecked(current.isOn);
             if(current.isOn){
@@ -65,16 +67,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             public void onClick(View view) {
                 if(current.isOn){
                     current.turnOff();
+                    UDPAsynctask.sendUDP("PWR:false", current.ipAddress);
                     holder.cl.setBackgroundColor(Color.parseColor("#80F2EAE3"));
                 } else{
                     current.turnOn();
+                    UDPAsynctask.sendUDP("PWR:true", current.ipAddress);
                     holder.cl.setBackgroundColor(Color.parseColor("#F2EAE3"));
                 }
             }
         });
 
 
-        } else{
+        } else{ //visuale griglia
 
             if(LampManager.lista_lampade.get(position).isOn){
                 holder.isOnText.setText("ACCESA");
@@ -88,10 +92,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 public void onClick(View view) {
                     if(current.isOn){
                         current.turnOff();
+                        UDPAsynctask.sendUDP("PWR:false", current.ipAddress);
                         holder.isOnText.setText("SPENTA");
                         holder.card_view.setBackgroundColor(Color.parseColor("#80F2EAE3"));
                     } else{
                         current.turnOn();
+                        UDPAsynctask.sendUDP("PWR:true", current.ipAddress);
                         holder.isOnText.setText("ACCESA");
                         holder.card_view.setBackgroundColor(Color.parseColor("#F2EAE3"));
                     }
@@ -132,8 +138,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(itemView);
             if(LampManager.statoMain==0){
                 cl = itemView.findViewById(R.id.singola_lampada);
-                name = itemView.findViewById(R.id.testo_lampada);
-                sw = itemView.findViewById(R.id.switch_isOn);
+                name = itemView.findViewById(R.id.list_item_name);
+                sw = itemView.findViewById(R.id.list_item_switch);
             }else{
                 card_view = itemView.findViewById(R.id.grid_item);
                 image=itemView.findViewById(R.id.grid_item_image);
