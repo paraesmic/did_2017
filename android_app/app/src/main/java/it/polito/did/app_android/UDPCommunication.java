@@ -95,7 +95,8 @@ public class UDPCommunication extends AsyncTask<Void,String,Integer> {
                     if (lamp_info_array[0].contains("aladino") && prev_packet_string != rec_msg_string || prev_packet_string == " ") {
                         if(lamp_info_array[6].equals("1")){
                             for(int i=0; i<manager.getLamps().size();i++){
-                                if(manager.getLamps().get(i).getIpAddress().equals(senderIP) || manager.getLamps().get(i).getNome("Genius")){
+                                if(manager.getLamps().get(i).getIpAddress().equals(senderIP) && manager.getLamps().get(i).getNome().equals("Genius1")){
+                                    manager.getLamps().get(i).setIpAddress(senderIP);
                                     manager.getLamps().get(i).setBattery(1);
                                     this.publishProgress("UI");
                                     Log.e("UDPCommunication", "cambiato stato batteria di: "  + manager.getLamps().get(i).getNome());
