@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".MainActivity"
-    android:background="@drawable/xhdpi_new">
+    android:background="@drawable/xhdpi_bianco">
 
 
     <android.support.v7.widget.Toolbar
@@ -43,6 +43,7 @@
         android:visibility="gone"
         android:gravity="center"
         android:columnWidth="100dp"
+
         />
 </LinearLayout>
 

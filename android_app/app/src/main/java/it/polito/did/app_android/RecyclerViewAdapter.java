@@ -29,7 +29,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v;
         if(LampManager.statoMain==0)
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.lampada_item_layout, parent,false);
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent,false);
         else
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_item, parent,false);
         MyViewHolder vh = new MyViewHolder(v);
@@ -43,42 +43,50 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         final Lampada current = LampManager.lista_lampade.get(position);
         holder.name.setText(current.toString());
 
-        if(current.battery){
-            holder.image2.setVisibility(View.VISIBLE);
-        }else {
-            holder.image2.setVisibility(View.INVISIBLE);
-        }
     //    holder.image.setImageDrawable((Drawable.createFromPath(current.getPicture());
         if(LampManager.statoMain==0){  //visuale lista
 
+
+            if(current.battery==1){
+                holder.image2.setVisibility(View.VISIBLE);
+                holder.sw.setVisibility(View.INVISIBLE);
+            }else {
+                holder.image2.setVisibility(View.INVISIBLE);
+                holder.sw.setVisibility(View.VISIBLE);
+            }
             holder.sw.setChecked(current.isOn);
             if(current.isOn){
-               // holder.cl.setBackgroundColor(Color.YELLOW);
                 holder.cl.setBackgroundColor(Color.parseColor("#F2EAE3"));
             } else {
-               // holder.cl.setBackgroundColor(Color.WHITE);
+
                 holder.cl.setBackgroundColor(Color.parseColor("#80F2EAE3"));
             }
 
         holder.cl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), SecondaryActivity.class);
-                intent.putExtra("currentLamp_index", position);
-                view.getContext().startActivity(intent);
+                if (current.isBattery() == 0) {
+
+                    Intent intent = new Intent(view.getContext(), SecondaryActivity.class);
+                    intent.putExtra("currentLamp_index", position);
+                    view.getContext().startActivity(intent);
+                }
             }
         });
         holder.sw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(current.isOn){
-                    current.turnOff();
-                    UDPAsynctask.sendUDP("PWR:false", current.ipAddress);
-                    holder.cl.setBackgroundColor(Color.parseColor("#80F2EAE3"));
-                } else{
-                    current.turnOn();
-                    UDPAsynctask.sendUDP("PWR:true", current.ipAddress);
-                    holder.cl.setBackgroundColor(Color.parseColor("#F2EAE3"));
+                if (current.isBattery() == 0) {
+
+                    if (current.isOn) {
+                        current.turnOff();
+                        UDPAsynctask.sendUDP("PWR:false", current.ipAddress);
+                        holder.cl.setBackgroundColor(Color.parseColor("#80F2EAE3"));
+                    } else {
+                        current.turnOn();
+                        UDPAsynctask.sendUDP("PWR:true", current.ipAddress);
+                        holder.cl.setBackgroundColor(Color.parseColor("#F2EAE3"));
+                    }
                 }
             }
         });
@@ -87,43 +95,48 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         } else{ //visuale griglia
 
             if(LampManager.lista_lampade.get(position).isOn){
-                holder.isOnText.setText("ACCESA");
+
                 holder.card_view.setBackgroundColor(Color.parseColor("#F2EAE3"));
             } else {
-                holder.isOnText.setText("SPENTA");
+
                 holder.card_view.setBackgroundColor(Color.parseColor("#80F2EAE3"));
             }
 
-            if(current.battery){
-                holder.image2.setVisibility(View.VISIBLE);
+            if(current.battery==0){
+               holder.bottonepiu.setVisibility(View.VISIBLE);
             }else {
-                holder.image2.setVisibility(View.INVISIBLE);
+                holder.bottonepiu.setVisibility(View.INVISIBLE);
             }
 
 
             holder.card_view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    if(current.isBattery()==0){
+
                     if(current.isOn){
                         current.turnOff();
                         UDPAsynctask.sendUDP("PWR:false", current.ipAddress);
-                        holder.isOnText.setText("SPENTA");
                         holder.card_view.setBackgroundColor(Color.parseColor("#80F2EAE3"));
                     } else{
                         current.turnOn();
                         UDPAsynctask.sendUDP("PWR:true", current.ipAddress);
-                        holder.isOnText.setText("ACCESA");
                         holder.card_view.setBackgroundColor(Color.parseColor("#F2EAE3"));
                     }
+                }
+
                 }
             });
 
             holder.bottonepiu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(view.getContext(), SecondaryActivity.class);
-                    intent.putExtra("currentLamp_index", position);
-                    view.getContext().startActivity(intent);
+                    if (current.isBattery() == 0) {
+
+                        Intent intent = new Intent(view.getContext(), SecondaryActivity.class);
+                        intent.putExtra("currentLamp_index", position);
+                        view.getContext().startActivity(intent);
+                    }
                 }
             });
         }
@@ -144,9 +157,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         ImageView image;
         ImageView image2;
         ImageView bottonepiu;
-        TextView isOnText;
         ConstraintLayout cl;
         CardView card_view;
+
 
 
         public MyViewHolder(View itemView){
@@ -161,8 +174,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 image=itemView.findViewById(R.id.grid_item_image);
                 bottonepiu=itemView.findViewById(R.id.grid_item_button);
                 name=itemView.findViewById(R.id.grid_item_name);
-                isOnText=itemView.findViewById(R.id.grid_item_isOn_text);
-                image2=itemView.findViewById(R.id.list_item_battery_image);
+
+                image2=itemView.findViewById(R.id.grid_item_battery_image);
 
             }
 

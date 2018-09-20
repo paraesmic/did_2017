@@ -34,8 +34,10 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="C:\Users\Luca\Desktop\gif_0_to_45.gif" />
-                                      <entry key="outputName" value="gif_0_45" />
+                                      <entry key="imageAsset" value="C:\Users\Luca\Desktop\icona1_128.png" />
+                                      <entry key="outputName" value="icona_1" />
+                                      <entry key="theme" value="CUSTOM" />
+                                      <entry key="themeColor" value="efb52b" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -99,6 +101,11 @@
                                 </PersistentState>
                               </value>
                             </entry>
+                          </map>
+                        </option>
+                        <option name="values">
+                          <map>
+                            <entry key="outputIconType" value="ACTIONBAR" />
                           </map>
                         </option>
                       </PersistentState>

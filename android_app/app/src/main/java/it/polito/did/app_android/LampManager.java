@@ -34,7 +34,7 @@ public class LampManager {
         //done.run();
     }
 
-    public void addLamp(String ip, String name, String isOn, int color,int current_pos){
+    public void addLamp(String ip, String name, String isOn, int color,int current_pos,int currentBattery){
         //inizia una ricerca di lampade
         boolean temp_bool = Boolean.parseBoolean(isOn);
         for(int i = 0; i<getLamps().size(); i++){
@@ -43,14 +43,16 @@ public class LampManager {
                 current.setColor(color);
                 current.changePwr(temp_bool);
                 current.setCurrent_pos(current_pos);
+                current.setBattery(currentBattery);
+                Log.e("LampManager", "aggiornata lampada: " + name + "con IP: " + ip);
                 return;
             }
         }
-        Lampada lamp = new Lampada(name, ip, temp_bool,current_pos);
+        Lampada lamp = new Lampada(name, ip, temp_bool,current_pos,currentBattery);
         lamp.setColor(color);
         lista_lampade.add(lamp);
-
         Log.e("LampManager", "creata Lamp: " + name + "con IP: " + ip);
+
     }
 
     public int getCurrent_lamp(){
@@ -61,11 +63,11 @@ public class LampManager {
         return udp_task;
     }
 
-    public void setBattery(String ip, boolean bool){
+    public void setBattery(String ip, int currentBattery){
         for(int i = 0; i<getLamps().size();i++){
             Lampada current = getLamps().get(i);
             if(current.getIpAddress().equals(ip)){
-                current.setBattery(bool);
+                current.setBattery(currentBattery);
             }
 
         }

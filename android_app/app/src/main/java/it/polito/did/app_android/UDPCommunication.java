@@ -18,6 +18,7 @@ public class UDPCommunication extends AsyncTask<Void,String,Integer> {
     private int port = 4096;
     private DatagramSocket serverSocket = null;
     private InetAddress lamp_IP;
+    private String prev_packet_string = " ";
     public boolean ascolta = true;
     public boolean send = false;
     public String send_msg_string = "vuoto";
@@ -36,7 +37,9 @@ public class UDPCommunication extends AsyncTask<Void,String,Integer> {
     }
 
     @Override
-    protected void onProgressUpdate(String... progress) { this.runnable.run();
+    protected void onProgressUpdate(String... progress) {
+            this.runnable.run();
+            Log.e("PROGRESS: ", "aggiorno UI");
     }
 
     @Override
@@ -60,60 +63,59 @@ public class UDPCommunication extends AsyncTask<Void,String,Integer> {
             e.printStackTrace();
         }
 
-        while(ascolta){
-            if(send){
+        while(ascolta) {
+            if (send) {
                 send_msg_data = send_msg_string.getBytes();
                 DatagramPacket sendPacket = new DatagramPacket(send_msg_data, send_msg_data.length, lamp_IP, port);
-                try{
+                try {
 
                     serverSocket.send(sendPacket);
-                    Log.e( "UDPCommunication", "Inviato UDP a: " + lamp_IP + ", Msg: " + send_msg_string );
+                    Log.e("UDPCommunication", "Inviato UDP a: " + lamp_IP + ", Msg: " + send_msg_string);
 
-                }  catch (IOException e) {
+                } catch (IOException e) {
                     Log.e("UDPCommunication", "indirizzo di invio nullo");
                     e.printStackTrace();
                 }
-
                 send = false;
                 this.publishProgress("UI");
+
             }
 
 
-            while(send_msg_string.equals("PWR:off" )|| send_msg_string.equals("PWR:on" )){
+                Log.e("UDPCommunication", "Attendo pacchetto UDP... ");
                 try {
-                    Thread.sleep(1000);
-                    Log.e("UDPCommunication", "dormo per 1s");
-                } catch (InterruptedException e) {
+                    serverSocket.receive(rec_packet);
+                    String senderIP = rec_packet.getAddress().getHostAddress().trim();
+                    String rec_msg_string = new String(rec_packet.getData(), rec_packet.getOffset(), rec_packet.getLength());
+                    String[] lamp_info_array = rec_msg_string.split("\\-");
+
+
+                    Log.e("UDP", "ricevuto UDP da: " + senderIP + " " + rec_msg_string);
+
+                    if (lamp_info_array[0].contains("aladino") && prev_packet_string != rec_msg_string || prev_packet_string == " ") {
+                        if(lamp_info_array[6].equals("1")){
+                            for(int i=0; i<manager.getLamps().size();i++){
+                                if(manager.getLamps().get(i).getIpAddress().equals(senderIP) || manager.getLamps().get(i).getNome("Genius")){
+                                    manager.getLamps().get(i).setBattery(1);
+                                    this.publishProgress("UI");
+                                    Log.e("UDPCommunication", "cambiato stato batteria di: "  + manager.getLamps().get(i).getNome());
+                                }
+                            }
+                        }
+                        manager.addLamp(senderIP, lamp_info_array[7], lamp_info_array[1], Color.rgb(Integer.valueOf(lamp_info_array[2]), Integer.valueOf(lamp_info_array[3]), Integer.valueOf(lamp_info_array[4])), Integer.valueOf(lamp_info_array[5]),Integer.valueOf(lamp_info_array[6]));
+                        manager.setBattery(senderIP, Integer.valueOf(lamp_info_array[6]));
+                        prev_packet_string = rec_msg_string;
+                        this.publishProgress("UI");
+                    } else Log.e("UDPCommunication", "pacchetto duplicato o non aladino");
+
+                    this.publishProgress("UI");
+                } catch (SocketTimeoutException e) {
+                    continue;
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
-            Log.e( "UDPCommunication", "Attendo pacchetto UDP... ");
-        try {
-            serverSocket.receive(rec_packet);
-            String senderIP = rec_packet.getAddress().getHostAddress().trim();
-            String rec_msg_string = new String(rec_packet.getData(), rec_packet.getOffset(), rec_packet.getLength());
-            String[] lamp_info_array = rec_msg_string.split("\\-");
-
-
-            Log.e("UDP", "ricevuto UDP da: " + senderIP + " " + lamp_info_array[7]);
-            if (lamp_info_array[0].equals("aladino")) {
-                manager.addLamp(senderIP, lamp_info_array[7], lamp_info_array[1], Color.rgb(Integer.valueOf(lamp_info_array[2]), Integer.valueOf(lamp_info_array[3]), Integer.valueOf(lamp_info_array[4])),Integer.valueOf(lamp_info_array[6]));
-                manager.setBattery(senderIP, Boolean.parseBoolean(lamp_info_array[6]));
-
 
             }
-
-            this.publishProgress("UI");
-        }
-        catch (SocketTimeoutException e) {
-            continue;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        }
-
-
         return 0;
     }
 

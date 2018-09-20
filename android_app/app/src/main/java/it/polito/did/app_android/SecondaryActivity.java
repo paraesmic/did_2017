@@ -2,7 +2,6 @@ package it.polito.did.app_android;
 
 import android.app.ActionBar;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,23 +14,19 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.larswerkman.holocolorpicker.ColorPicker;
-import com.larswerkman.holocolorpicker.ValueBar;
-
 
 public class SecondaryActivity extends AppCompatActivity {
 
     LampManager manager = LampManager.getInstance();
     int currentLamp_index = manager.getCurrent_lamp();
     private UDPCommunication UDPAsynctask = manager.getUdp_task();
-    float[] HSV_color = {0,0,0};
-    int new_rgb_color;
+    final Lampada current = manager.lista_lampade.get(currentLamp_index);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_secondary);
-        final Lampada current = manager.lista_lampade.get(currentLamp_index);
 
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
@@ -41,32 +36,16 @@ public class SecondaryActivity extends AppCompatActivity {
         android.support.v7.app.ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
+        Switch sw = findViewById(R.id.switch_secondary);
+        TextView name = findViewById(R.id.nomeLampada_secondary);
         Button bottone_movimento = findViewById(R.id.bottone_movimento);
         Button bottone_luce = findViewById(R.id.bottone_luce);
-
-        //settaggio nome
-        TextView name = findViewById(R.id.nomeLampada_secondary);
+       //SET UI
         name.setText(current.getNome());
-
-        final ColorPicker picker = findViewById(R.id.colorPicker2);
-        //settaggio intensità
-        ValueBar valueBar = (ValueBar) findViewById(R.id.barra_intensita);
-
-        picker.addValueBar(valueBar);
-        picker.setColor(current.getColor());
-
-        valueBar.setOnValueChangedListener(new ValueBar.OnValueChangedListener() {
-            @Override
-            public void onValueChanged(int value) {
-                int new_color = picker.getColor();
-                current.setColor(new_color);
-                UDPAsynctask.sendUDP("RGB:" + Color.red(new_color) + "," + Color.green(new_color) + "," + Color.blue(new_color), current.getIpAddress());
-
-            }
-        });
-        //settaggio On/Off
-        Switch sw = findViewById(R.id.switch_secondary);
         sw.setChecked(current.isOn);
+
+
+
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -75,6 +54,7 @@ public class SecondaryActivity extends AppCompatActivity {
                         current.turnOn();
                         UDPAsynctask.sendUDP("PWR:true", current.ipAddress);
                         Log.i("switchSecondary", "on");
+
 
                     }
                     if(!b){
@@ -107,6 +87,20 @@ public class SecondaryActivity extends AppCompatActivity {
         );
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Switch sw = findViewById(R.id.switch_secondary);
+        sw.setChecked(current.isOn);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Switch sw = findViewById(R.id.switch_secondary);
+        sw.setChecked(current.isOn);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -120,7 +114,7 @@ public class SecondaryActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                startActivity(new Intent(SecondaryActivity.this, SettingsActivity.class));
+                startActivity(new Intent(SecondaryActivity.this,  InfoActivity.class));
                 return true;
             case R.id.home:
                 Intent intent = new Intent(SecondaryActivity.this, MainActivity.class);

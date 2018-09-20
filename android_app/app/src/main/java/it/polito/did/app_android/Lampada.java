@@ -12,15 +12,16 @@ public class Lampada {
     String Picture;
     Boolean isOn;
     String ipAddress;
-    boolean battery;
+    int battery;
     int current_pos;
 
 
-    public Lampada(String nome, String ipAddress, Boolean status, int current_pos) {
+    public Lampada(String nome, String ipAddress, Boolean status, int current_pos, int currentBattery) {
         this.nome = nome;
         this.ipAddress = ipAddress;
         isOn= status;
         this.current_pos = current_pos;
+        battery=currentBattery;
         int[] rgb_diviso = {250, 250, 150}; //<-----R G B!
         this.setColor(Color.rgb(rgb_diviso[0],rgb_diviso[1],rgb_diviso[2]));
         Log.e("CreazioneLampada", "il colore settato è: Rosso:" +  Color.red(this.getColor()) + " Verde: " + rgb_diviso[1] + " Blu: " + rgb_diviso[2] + " equivalente a int: " + this.getColor());
@@ -88,11 +89,11 @@ public class Lampada {
     }
 
 
-    public boolean isBattery() {
+    public int isBattery() {
         return battery;
     }
 
-    public void setBattery(boolean battery) {
+    public void setBattery(int battery) {
         this.battery = battery;
     }
 

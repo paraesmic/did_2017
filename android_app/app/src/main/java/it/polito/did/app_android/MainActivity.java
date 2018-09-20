@@ -3,26 +3,26 @@ package it.polito.did.app_android;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    LampManager manager = LampManager.getInstance();
-    RecyclerView recycler_layout;
-    RecyclerViewAdapter recyclerViewAdapter;
-    UDPCommunication udp_task =  new UDPCommunication(new Runnable() {
+    public LampManager manager = LampManager.getInstance();
+    public RecyclerView recycler_layout;
+    public RecyclerViewAdapter recyclerViewAdapter;
+    public UDPCommunication udp_task =  new UDPCommunication(new Runnable() {
         @Override
         public void run() {
-                recyclerViewAdapter.notifyDataSetChanged();
 
+                recyclerViewAdapter.notifyDataSetChanged();
         }
     }
 
@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        PreferenceManager.setDefaultValues(this,R.xml.preferences,false);
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         recyclerViewAdapter.notifyDataSetChanged();
+
         super.onResume();
     }
 
@@ -98,8 +101,7 @@ public class MainActivity extends AppCompatActivity {
 //                onSearchRequested();
 //                return true;
             case R.id.action_settings:
-                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
-                Log.i("Hello", "Hello");
+                startActivity(new Intent(MainActivity.this, InfoActivity.class));
                 return true;
 
             case R.id.action_changeview:

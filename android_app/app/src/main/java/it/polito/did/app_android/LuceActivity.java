@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.larswerkman.holocolorpicker.ColorPicker;
 import com.larswerkman.holocolorpicker.SaturationBar;
@@ -43,6 +44,8 @@ public class LuceActivity extends AppCompatActivity {
         ValueBar valueBar = findViewById(R.id.valuebar);
         picker.addSaturationBar(saturationBar);
         picker.addValueBar(valueBar);
+        TextView nome = findViewById(R.id.nomeLampada_luce);
+        nome.setText(current.getNome());
 
 
         picker.setColor(initial_color);
@@ -89,7 +92,7 @@ public class LuceActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                startActivity(new Intent(LuceActivity.this, SettingsActivity.class));
+                startActivity(new Intent(LuceActivity.this, InfoActivity.class));
 
                 return true;
 

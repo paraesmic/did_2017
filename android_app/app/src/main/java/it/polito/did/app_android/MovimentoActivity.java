@@ -24,14 +24,13 @@ public class MovimentoActivity extends AppCompatActivity {
     UDPCommunication udpTask = manager.getUdp_task();
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_movimento);
         final Lampada current = manager.lista_lampade.get(currentLamp_index);
-
-        Intent intent = getIntent();
-
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         ActionBar ab = getSupportActionBar();
@@ -41,48 +40,41 @@ public class MovimentoActivity extends AppCompatActivity {
         menu.setOpenMenuText("Seleziona posizione");
         menu.setCloseMenuText("Chiudi");
 
+        TextView nome_lampada = findViewById(R.id.nomeLampada_movimento);
+        nome_lampada.setText(current.getNome());
         final GifImageView gif = findViewById(R.id.gif_posizione);
         TextView testo = findViewById(R.id.testo_posizione_corrente);
-        switch(current.getCurrent_pos()){
+        Log.e("MOVIMENTOACTIVITY", "currentPos: " + current.getCurrent_pos());
 
-            case 100:
-                try {
-                    gif.setImageDrawable(new GifDrawable(getResources(), R.drawable.png_0_degrees));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case 135:
-                gif.setImageResource(R.drawable.png_45_degrees);
-                testo.setText("POSIZIONE 45°");
-                break;
-            case 170:
-                gif.setImageResource(R.drawable.png_90_degrees);
-                testo.setText("POSIZIONE 90°");
-                break;
-        }
+  if(current.getCurrent_pos()==100){
+      gif.setImageResource(R.drawable.png_0_degrees);
+      testo.setText("POSIZIONE 0°");
+  } else if(current.getCurrent_pos()==135){
+      gif.setImageResource(R.drawable.png_45_degrees);
+      testo.setText("POSIZIONE 45°");
+  } else{
+      gif.setImageResource(R.drawable.png_90_degrees);
+      testo.setText("POSIZIONE 90°");
+  }
 
-
-
-
-        int drawableResourceId1 = this.getResources().getIdentifier("icon_0_degrees", "drawable", this.getPackageName());
-        int drawableResourceId3 = this.getResources().getIdentifier("icon_45_degrees", "drawable", this.getPackageName());
-        int drawableResourceId4 = this.getResources().getIdentifier("icon_90_degrees", "drawable", this.getPackageName());
+        int drawableResourceId1 = this.getResources().getIdentifier("item_0_degrees", "drawable", this.getPackageName());
+        int drawableResourceId3 = this.getResources().getIdentifier("item_45_degrees", "drawable", this.getPackageName());
+        int drawableResourceId4 = this.getResources().getIdentifier("item_90_degrees", "drawable", this.getPackageName());
 
         final SemiCircularRadialMenuItem item_1 =  new SemiCircularRadialMenuItem("primoItem", getApplicationContext().getResources().getDrawable(drawableResourceId1),"posizione1");
         final SemiCircularRadialMenuItem item_3 =  new SemiCircularRadialMenuItem("terzoItem", getApplicationContext().getResources().getDrawable(drawableResourceId3),"posizione3");
         final SemiCircularRadialMenuItem item_4 =  new SemiCircularRadialMenuItem("quartoItem", getApplicationContext().getResources().getDrawable(drawableResourceId4),"posizione4");
 
-
+        item_1.setIconDimen(128);
+        item_3.setIconDimen(128);
+        item_4.setIconDimen(128);
 
         menu.addMenuItem("primoItem", item_1);
         menu.addMenuItem("terzoItem", item_3);
         menu.addMenuItem("quartoItem", item_4);
 
-
-
-
-
+        menu.setOpenButtonScaleFactor(2);
+        menu.setTextSize(14);
 
         item_1.setOnSemiCircularRadialMenuPressed(new SemiCircularRadialMenuItem.OnSemiCircularRadialMenuPressed() {
             @Override
@@ -90,9 +82,22 @@ public class MovimentoActivity extends AppCompatActivity {
                 GifImageView gif = findViewById(R.id.gif_posizione);
                 TextView testo = findViewById(R.id.testo_posizione_corrente);
                 testo.setText("POSIZIONE 0°");
-                gif.setImageResource(R.drawable.png_0_degrees);
+                if(current.getCurrent_pos()==135){
+                    try {
+                        gif.setImageDrawable(new GifDrawable(getResources(), R.drawable.gif_from_45_to_0));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else if(current.getCurrent_pos()==170){
+                    try {
+                        gif.setImageDrawable(new GifDrawable(getResources(), R.drawable.gif_from_90_to_0));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
                 udpTask.sendUDP("MOV:100", current.getIpAddress());
                 Log.i("item_1", " testo cambiato");
+                current.setCurrent_pos(100);
                 menu.dismissMenu();
             }
         });
@@ -103,8 +108,22 @@ public class MovimentoActivity extends AppCompatActivity {
                 final GifImageView gif = findViewById(R.id.gif_posizione);
                 TextView testo = findViewById(R.id.testo_posizione_corrente);
                 testo.setText("POSIZIONE 45°");
-                gif.setImageResource(R.drawable.png_45_degrees);
+                if(current.getCurrent_pos()==100){
+                    try {
+                        gif.setImageDrawable(new GifDrawable(getResources(), R.drawable.gif_from_0_to_45));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else if(current.getCurrent_pos()==170){
+                    try {
+                        gif.setImageDrawable(new GifDrawable(getResources(), R.drawable.gif_from_90_to_45));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
                 udpTask.sendUDP("MOV:135", current.getIpAddress());
+                current.setCurrent_pos(135);
                 Log.i("item_3", " testo cambiato");
                 menu.dismissMenu();
             }
@@ -116,8 +135,21 @@ public class MovimentoActivity extends AppCompatActivity {
                 final GifImageView gif = findViewById(R.id.gif_posizione);
                 TextView testo = findViewById(R.id.testo_posizione_corrente);
                 testo.setText("POSIZIONE 90°");
-                gif.setImageResource(R.drawable.png_90_degrees);
+                if(current.getCurrent_pos()==100){
+                    try {
+                        gif.setImageDrawable(new GifDrawable(getResources(), R.drawable.gif_from_0_to_90));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else if(current.getCurrent_pos()==135){
+                    try {
+                        gif.setImageDrawable(new GifDrawable(getResources(), R.drawable.gif_from_45_to_90));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
                 udpTask.sendUDP("MOV:170", current.getIpAddress());
+                current.setCurrent_pos(170);
                 Log.i("item_4", " testo cambiato");
                 menu.dismissMenu();
             }
@@ -137,12 +169,14 @@ public class MovimentoActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                startActivity(new Intent(MovimentoActivity.this, SettingsActivity.class));
+                startActivity(new Intent(MovimentoActivity.this,  InfoActivity.class));
                 return true;
 
             case R.id.home:
                 Intent intent = new Intent(MovimentoActivity.this, SecondaryActivity.class);
                 startActivity(intent);
+                return true;
+
 
             default:
                 // If we got here, the user's action was not recognized.

@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Aladino</string>
-    <string name="nome_lampada" translatable="false">Nome_Lampada</string>
+    <string name="app_name">Aladino</string>
+    <string name="nome_lampada">Nome_Lampada</string>
     <string name="testButton1">Movimento</string>
     <string name="testButton2">Luce e Colore</string>
     <string name="luceActivity_name">Luce e Colore</string>
